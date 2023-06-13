@@ -1,0 +1,11 @@
+.button {
+    background-color: inherit;
+}
+
+.activeButton {
+    background-color: #b6daff;
+}
+.activeButton:hover {
+    background-color: #b6daff;
+    cursor: default;
+}

@@ -1,0 +1,28 @@
+.listItem {
+    padding: 0;
+    margin: 0;
+    font-size: 0.7rem;
+    line-height: 0.5;
+    max-width: 450px;
+    min-width: 450px;
+    gap: 7px;
+    justify-content: space-between;
+}
+
+.extendedListText {
+    width: 150px;
+}
+
+.selectForm {
+    padding: 0;
+    margin: 0;
+    min-width: 50px;
+}
+
+.selectItem {
+    padding: 0;
+}
+
+.repsInput {
+    max-width: 50px;
+}
