@@ -50,12 +50,11 @@ export interface Workout {
     exercises: BuiltExerciseType[],
 }
 
- interface BuiltExerciseType {
+interface BuiltExerciseType {
     exercise: ExerciseType,
     sets: number,
     reps: number
 }
-
 
 
 export const ProgramConstructor = () => {
@@ -70,7 +69,6 @@ export const ProgramConstructor = () => {
     const [programName, setProgramName] = React.useState('');
 
     const dispatch = useAppDispatch();
-
 
     function handleWeekDayClick(event: React.ChangeEvent<HTMLInputElement>) {
         if (event.target.checked) {
@@ -115,31 +113,27 @@ export const ProgramConstructor = () => {
         setWorkoutProgram(prevState =>
             [...prevState, {day: weekDays[currenDay], exercises: chosenExercises}])
         setChosenExercises([])
-        dispatch(setProgram({name: programName,workouts: workoutProgram }))
+        dispatch(setProgram({name: programName, workouts: workoutProgram}))
     }
 
-    function stepSelection() {
-        switch (buildStep) {
-            case BuildSteps.programName: {
-                return (
-                    <>
-                        <Box>
-                            <TextField placeholder={'Название программы'}
-                                       variant='standard'
-                                       onChange={handleSetProgramName}/>
-                            <Button  disabled={!programName} onClick={handleNextStep} endIcon={<CheckCircleIcon/>}>Далее</Button>
-                        </Box>
-                    </>
-                )
-            }
-            case BuildSteps.weekDays: {
-                return (
-                    <>
-                        <p className={styles.stepTitle}>Выбор тренировочных дней</p>
-                        <div className='flex flex-row justify-center'>
+
+    return (
+        <div className={styles.stepContainer}>
+            <form>
+                <Box className={buildStep > 0 ? styles.hidden : ''}>
+                    <TextField placeholder={'Название программы'}
+                               variant='standard'
+                               onChange={handleSetProgramName}
+                               className='ml-2'/>
+                    <Button disabled={!programName} onClick={handleNextStep} endIcon={<CheckCircleIcon/>}>Далее</Button>
+                </Box>
+                {buildStep > 0 &&
+                    <Box className={buildStep > 1 ? styles.hidden : ''}>
+                        <div className='flex flex-row justify-start'>
                             {daysOfWeek.map(({dayName, dayNameRu}) => {
                                 return (
                                     <FormControlLabel
+                                        className={styles.checkboxLabel}
                                         key={dayName}
                                         value={dayName}
                                         control={<Checkbox className={styles.dayCheckbox}
@@ -154,13 +148,9 @@ export const ProgramConstructor = () => {
                                 Далее
                             </Button>
                         </div>
-                    </>
-                )
-            }
-            case BuildSteps.buildWorkout: {
-                return (
-                    <>
-                        <p className={styles.stepTitle}>Новая программа</p>
+                    </Box>}
+                {buildStep > 1 &&
+                    <Box>
                         <div className={styles.workoutContainer}>
                             <div className={styles.card}>
                                 <h3 className={styles.cardTitle}>{daysOfWeek.find(day => day.dayName === weekDays[currenDay])?.fullDayName}</h3>
@@ -175,9 +165,7 @@ export const ProgramConstructor = () => {
                                                       color='primary'
                                                       onClick={handleAddExercise}><ChevronRightIcon/></IconButton>}
                                 </div>
-
                                 <List dense={true} className={styles.cardContent}>
-
                                     {chosenExercises.length > 0
                                         && chosenExercises.map((ex) => {
                                             return (
@@ -213,15 +201,10 @@ export const ProgramConstructor = () => {
                             {exercisesOpen && <ExercisesList
                                 handleChoiceExercise={handleChoiceExercise}/>}
                         </div>
-                    </>
-                )
-            }
-        }
-    }
-
-    return (
-        <div className={styles.stepContainer}>
-            {stepSelection()}
+                    </Box>
+                }
+            </form>
         </div>
+
     )
 }

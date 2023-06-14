@@ -81,6 +81,15 @@
     padding: 5px;
     font-size: 1.4rem;
     font-weight: 400;
+}
 
+.hidden {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.checkboxLabel {
+    margin: 0;
+    padding: 0;
 }
 
