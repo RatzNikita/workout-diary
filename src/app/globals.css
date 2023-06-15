@@ -1,9 +1,29 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("Inter-Regular.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("Inter-Medium.ttf") format("ttf");
+}
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("Inter-Black.ttf") format("ttf");
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-
 body {
-  background: #e9e9e9
+  background: #e9e9e9;
 }
+
+/*# sourceMappingURL=globals.css.map */
