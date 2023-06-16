@@ -77,19 +77,12 @@ const repsDefault = '8'
 export const ExercisesList = ({handleChoiceExercise}: ExercisesListProps) => {
 
     const [openChest, setOpenChest] = React.useState(false)
-    const [openBack, setOpenBack] = React.useState(false)
-    const [openLegs, setOpenLegs] = React.useState(false)
     const [expandedExercise, setExpandedExercise] = React.useState<ExerciseType>()
     const [sets, setSets] = React.useState(setsDefault)
     const [reps, setReps] = React.useState(repsDefault)
 
 
-    const handleOpenLegs = () => {
-        setOpenLegs(!openLegs);
-    };
-    const handleOpenBack = () => {
-        setOpenBack(!openBack);
-    };
+
     const handleOpenChest = () => {
         setOpenChest(!openChest);
     };
@@ -126,7 +119,7 @@ export const ExercisesList = ({handleChoiceExercise}: ExercisesListProps) => {
                 <List component="div" disablePadding>
                     {exercises.filter(ex => ex.group === 'chest').map(ex => {
                             return expandedExercise?.name === ex.name
-                                ? <ListItem className={styles.listItem}>
+                                ? <ListItem key={ex.name} className={styles.listItem}>
                                     <ListItemText className={styles.extendedListText} primary={ex.name}
                                                   secondary={ex.muscle}/>
                                     <FormControl className={styles.selectForm} variant='standard'>
