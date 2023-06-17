@@ -23,3 +23,13 @@
     flex-direction: column;
     padding: 5px 25px 5px 5px;
 }
+
+.programTitle {
+    font-size: 1.8rem;
+    padding: 10px;
+}
+.cardsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
