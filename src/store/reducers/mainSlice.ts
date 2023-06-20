@@ -47,10 +47,16 @@ const mainSlice = createSlice({
                 state.currentProgram.workouts = state.currentProgram.workouts
                     .map(workout => {
                         if (workout.day === action.payload.day) {
-                            workout = action.payload
+                            return {...action.payload}
                         }
                         return workout
                     })
+                state.myPrograms = state.myPrograms.map(program => {
+                    if(state.currentProgram && program.name === state.currentProgram.name) {
+                        return {...state.currentProgram}
+                    }
+                    return program
+                })
             }
         }
     },
