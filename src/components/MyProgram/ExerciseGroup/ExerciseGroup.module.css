@@ -1,0 +1,16 @@
+.groupContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.listItem {
+    padding: 0;
+    margin: 0;
+    font-size: 0.7rem;
+    line-height: 0.5;
+    max-width:300px;
+    min-width: 400px;
+    height: max-content;
+    gap: 7px;
+    justify-content: space-between;
+}
