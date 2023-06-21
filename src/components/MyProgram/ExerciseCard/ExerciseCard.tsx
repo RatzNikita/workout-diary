@@ -1,4 +1,4 @@
-import {Box, Button, List, ListItem, ListItemText, TextField, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import {BuiltExerciseType, Workout} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 import styles from './ExerciseCard.module.scss'
 import React from "react";

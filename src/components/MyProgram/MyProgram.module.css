@@ -28,6 +28,7 @@
     font-size: 1.8rem;
     padding: 10px;
 }
+
 .cardsContainer {
     display: flex;
     flex-direction: row;

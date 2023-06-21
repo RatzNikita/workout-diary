@@ -1,5 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import {Workout} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
+import {ExerciseType} from "@component/components/MyProgram/ExercisesList/ExercisesList";
 
 export interface TrainingProgram {
     name: string,
@@ -12,6 +13,7 @@ interface MainState {
     constructorState: string,
     currentProgram: TrainingProgram | null,
     myPrograms: TrainingProgram[],
+    exercises: ExerciseType[],
 }
 
 const initialState: MainState = {
@@ -19,7 +21,49 @@ const initialState: MainState = {
     currentProgram: null,
     myProgramState: 'view',
     constructorState: '',
-    myPrograms: []
+    myPrograms: [],
+    exercises: [
+        {
+            name: 'Жим ногами',
+            muscle: 'Квадрицепс',
+            group: 'legs'
+        },
+        {
+            name: 'Приседания со штангой',
+            muscle: 'Квадрицепс',
+            group: 'legs'
+        },
+        {
+            name: 'Мёртвая тяга',
+            muscle: 'Бицепс бедра',
+            group: 'legs'
+        },
+        {
+            name: 'Жим лёжа',
+            muscle: 'Грудные',
+            group: 'chest'
+        },
+        {
+            name: 'Разводка гантелей лёжа на скамье',
+            muscle: 'Грудные',
+            group: 'chest'
+        },
+        {
+            name: 'Сгибания рук в тренажёре "Бабочка"',
+            muscle: 'Грудные',
+            group: 'chest'
+        },
+        {
+            name: 'Тяга штанги в наклоне',
+            muscle: 'Широчайшие',
+            group: 'back'
+        },
+        {
+            name: 'Подтягивания широким хватом',
+            muscle: 'Трапецевидная',
+            group: 'back'
+        },
+    ]
 }
 
 const mainSlice = createSlice({
