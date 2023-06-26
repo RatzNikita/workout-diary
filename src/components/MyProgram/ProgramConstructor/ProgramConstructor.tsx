@@ -42,8 +42,12 @@ export interface BuiltExerciseType {
     weight: number,
 }
 
+interface ProgramConstructorProps {
+    handleSetMyProgramState: (state: string) => void
+}
 
-export const ProgramConstructor = () => {
+
+export const ProgramConstructor = ({handleSetMyProgramState} : ProgramConstructorProps) => {
 
     const [buildStep, setBuildStep] = React.useState(BuildSteps.programName)
     const [weekDays, setWeekDays] = React.useState<string[]>([])
@@ -71,6 +75,7 @@ export const ProgramConstructor = () => {
 
     const handleSaveProgram = (workoutProgram: Workout[]) => {
         dispatch(setProgram({name: programName, workouts: workoutProgram}))
+        handleSetMyProgramState('viewMain')
     }
 
     return (

@@ -23,6 +23,15 @@
     flex-direction: column;
     padding: 5px 25px 5px 5px;
 }
+.programsContent {
+    margin: 25px 0 0;
+}
+
+.buttonActive {
+    transition: border-bottom-color 0.5s linear;
+    border-bottom: #424242 3px solid;
+    border-radius: 0;
+}
 
 .programTitle {
     font-size: 1.8rem;
@@ -30,6 +39,7 @@
 }
 
 .cardsContainer {
+    margin-top: 25px;
     display: flex;
     flex-direction: row;
     gap: 10px;

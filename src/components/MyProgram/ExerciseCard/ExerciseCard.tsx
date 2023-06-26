@@ -6,12 +6,9 @@ import {useAppDispatch} from "@component/hooks/hooks";
 import {setWorkout} from "@component/store/reducers/mainSlice";
 import {CardRow} from "@component/components/MyProgram/ExerciseCard/CardRow/CardRow";
 
-
 export const ExerciseCard = ({exercises, day}: Workout) => {
 
-
     const dispatch = useAppDispatch();
-
 
     const handleChangeWeight = (weight: number, ex: BuiltExerciseType) => {
         const newExercises = exercises.map(exe => {
@@ -21,7 +18,6 @@ export const ExerciseCard = ({exercises, day}: Workout) => {
             return exe;
         })
         dispatch(setWorkout({exercises: newExercises, day: day}))
-
     }
 
     return (
