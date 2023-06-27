@@ -3,8 +3,8 @@ import {Button, Divider} from "@mui/material";
 import {ExerciseCard} from "@component/components/MyProgram/ExerciseCard/ExerciseCard";
 import React from "react";
 import {TrainingProgram} from "@component/store/reducers/mainSlice";
-import {Workout} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 import {WeightProgress} from "@component/components/Statistics/WeightProgress";
+import {Workout} from "@component/types/workoutTypes";
 
 interface CurrentProgramProps {
     currentProgram: TrainingProgram | null,

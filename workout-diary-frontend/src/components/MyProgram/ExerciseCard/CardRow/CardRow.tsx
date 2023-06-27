@@ -1,13 +1,13 @@
 import {IconButton, List, ListItem, ListItemText, TextField, Typography} from "@mui/material";
 import styles from "./CardRow.module.css";
 import React from "react";
-import {BuiltExerciseType} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 import CreateIcon from '@mui/icons-material/Create';
 import DoneIcon from "@mui/icons-material/Done";
+import {BuiltExercise} from "@component/types/workoutTypes";
 
 interface CardRowProps {
-    exercise: BuiltExerciseType,
-    submitWeight: (weight: number, ex: BuiltExerciseType) => void,
+    exercise: BuiltExercise,
+    submitWeight: (weight: number, ex: BuiltExercise) => void,
 }
 
 

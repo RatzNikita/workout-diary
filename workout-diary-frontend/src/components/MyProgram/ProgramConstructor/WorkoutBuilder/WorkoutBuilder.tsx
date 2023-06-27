@@ -5,13 +5,10 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import DoneIcon from "@mui/icons-material/Done";
-import {ExercisesList, ExerciseType} from "@component/components/MyProgram/ExercisesList/ExercisesList";
+import {ExercisesList} from "@component/components/MyProgram/ExercisesList/ExercisesList";
 import React from "react";
-import {
-    BuiltExerciseType,
-    daysOfWeek,
-    Workout
-} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
+import {daysOfWeek,} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
+import {BuiltExercise, Exercise, Workout} from "@component/types/workoutTypes";
 
 interface WorkoutBuilderProps {
     weekDays: string[],
@@ -22,7 +19,7 @@ export const WorkoutBuilder = ({weekDays, handleSaveProgram}: WorkoutBuilderProp
 
     const [currentDay, setCurrentDay] = React.useState(0)
     const [exercisesOpen, setExercisesOpen] = React.useState(false)
-    const [chosenExercises, setChosenExercises] = React.useState<BuiltExerciseType[]>([])
+    const [chosenExercises, setChosenExercises] = React.useState<BuiltExercise[]>([])
     const [workoutProgram, setWorkoutProgram] = React.useState<Workout[]>([])
 
 
@@ -40,13 +37,13 @@ export const WorkoutBuilder = ({weekDays, handleSaveProgram}: WorkoutBuilderProp
         setExercisesOpen(!exercisesOpen)
     }
 
-    const handleChoiceExercise = (exercise: ExerciseType, sets: number, reps: number) => {
+    const handleChoiceExercise = (exercise: Exercise, sets: number, reps: number) => {
         if (!chosenExercises.find(ex => ex.exercise === exercise)) {
             setChosenExercises(prevState => [...prevState, {exercise, sets, reps, weight: 0}])
         }
     }
 
-    const handleDeleteExercise = (exercise: BuiltExerciseType) => {
+    const handleDeleteExercise = (exercise: BuiltExercise) => {
         setChosenExercises(prevState => prevState.filter(ex => ex !== exercise))
     }
 

@@ -1,11 +1,11 @@
 import {Box, Button, Checkbox, FormControlLabel, TextField,} from "@mui/material";
 import React from "react";
 import styles from './ProgramConstructor.module.css'
-import {ExerciseType} from "@component/components/MyProgram/ExercisesList/ExercisesList";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {useAppDispatch} from "@component/hooks/hooks";
 import {setProgram} from "@component/store/reducers/mainSlice";
 import {WorkoutBuilder} from "@component/components/MyProgram/ProgramConstructor/WorkoutBuilder/WorkoutBuilder";
+import {Workout} from "@component/types/workoutTypes";
 
 export const daysOfWeek: WeekDaysType[] = [
     {dayName: 'mon', dayNameRu: 'Пн', fullDayName: 'Понедельник'},
@@ -30,22 +30,9 @@ enum BuildSteps {
     finish,
 }
 
-export interface Workout {
-    day: string,
-    exercises: BuiltExerciseType[],
-}
-
-export interface BuiltExerciseType {
-    exercise: ExerciseType,
-    sets: number,
-    reps: number,
-    weight: number,
-}
-
 interface ProgramConstructorProps {
     handleSetMyProgramState: (state: string) => void
 }
-
 
 export const ProgramConstructor = ({handleSetMyProgramState} : ProgramConstructorProps) => {
 

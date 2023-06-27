@@ -1,11 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {Workout} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
-import {ExerciseType} from "@component/components/MyProgram/ExercisesList/ExercisesList";
-
-export interface TrainingProgram {
-    name: string,
-    workouts: Workout[]
-}
+import {Exercise, TrainingProgram, Workout} from "@component/types/workoutTypes";
 
 interface MainState {
     activeMenu: string,
@@ -13,7 +7,7 @@ interface MainState {
     constructorState: string,
     currentProgram: TrainingProgram | null,
     myPrograms: TrainingProgram[],
-    exercises: ExerciseType[],
+    exercises: Exercise[],
 }
 
 const initialState: MainState = {

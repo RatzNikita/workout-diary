@@ -16,20 +16,11 @@ import React from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import styles from './ExercisesList.module.css'
 import {useAppSelector} from "@component/hooks/hooks";
+import {Exercise, GroupExercise} from "@component/types/workoutTypes";
 import {ExerciseGroup} from "@component/components/MyProgram/ExerciseGroup/ExerciseGroup";
 
-export interface ExerciseType {
-    name: string,
-    muscle: string,
-    group: string,
-}
 
-interface ExerciseGroup {
-    name: string,
-    title: string
-}
-
-export const exerciseGroups: ExerciseGroup[] = [
+export const exerciseGroups: GroupExercise[] = [
     {name: 'chest', title: 'Грудь'},
     {name: 'back', title: 'Спина'},
     {name: 'legs', title: 'Ноги'},
@@ -37,7 +28,7 @@ export const exerciseGroups: ExerciseGroup[] = [
 ]
 
 interface ExercisesListProps {
-    handleChoiceExercise: (e: ExerciseType, s: number, r: number) => void
+    handleChoiceExercise: (e: Exercise, s: number, r: number) => void
 }
 
 const setsDefault = '4'
@@ -46,11 +37,11 @@ const repsDefault = '8'
 export const ExercisesList = ({handleChoiceExercise}: ExercisesListProps) => {
 
     const exercises = useAppSelector(state => state.main.exercises)
-    const [expandedExercise, setExpandedExercise] = React.useState<ExerciseType>()
+    const [expandedExercise, setExpandedExercise] = React.useState<Exercise>()
     const [sets, setSets] = React.useState(setsDefault)
     const [reps, setReps] = React.useState(repsDefault)
 
-    const handleSetExercise = (ex: ExerciseType) => {
+    const handleSetExercise = (ex: Exercise) => {
         setSets(setsDefault)
         setReps(repsDefault)
         setExpandedExercise(ex)
