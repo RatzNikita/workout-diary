@@ -4,3 +4,10 @@
     min-width: 250px;
     min-height: 90px;
 }
+.navBar {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+}

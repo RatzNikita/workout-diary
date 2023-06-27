@@ -1,9 +1,11 @@
 .button {
     background-color: inherit;
+    border-radius: 0;
+    max-height: 40px;
 }
 
 .activeButton {
-    background-color: #e0e0e0;
+    border-bottom: #424242 3px solid;
 }
 .activeButton:hover {
     background-color: #e0e0e0;

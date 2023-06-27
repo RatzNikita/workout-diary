@@ -5,6 +5,7 @@
     justify-content: space-between;
     border-bottom: #828282 1px solid;
     align-items: center;
+    min-height: 48px;
 }
 .cardItemText {
     display: flex;
@@ -21,6 +22,10 @@
     padding: 0;
     font-size: 2vh;
     border: none;
+}
+
+.row {
+    padding: 0;
 }
 
 

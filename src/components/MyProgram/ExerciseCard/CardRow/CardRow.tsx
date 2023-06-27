@@ -35,14 +35,14 @@ export const CardRow = ({exercise, submitWeight}: CardRowProps) => {
     }
 
     return (
-        <List key={exercise.exercise.name}>
+        <List className={styles.row} key={exercise.exercise.name}>
             <ListItem className={styles.cardItem}
                       secondaryAction={
                           mode !== Mode.change
                               ? <div className={styles.rowAction}>
                                   <Typography variant='h6'>{`${exercise.weight}кг`}</Typography>
                                   <IconButton className={styles.actionButton}
-                                              onClick={() => handleChangeMode(Mode.change)}><CreateIcon/></IconButton>
+                                              onClick={() => handleChangeMode(Mode.change)}><CreateIcon fontSize="small"/></IconButton>
                               </div>
                               : <div className={styles.rowAction}>
                                   <TextField inputProps={{maxLength: 4, className: styles.cardInput}}
@@ -51,7 +51,7 @@ export const CardRow = ({exercise, submitWeight}: CardRowProps) => {
                                              onChange={handleChangeWeight}>
                                   </TextField>
                                   <IconButton className={styles.actionButton}
-                                              onClick={handleSubmitChange}><DoneIcon/></IconButton>
+                                              onClick={handleSubmitChange}><DoneIcon fontSize="small"/></IconButton>
                               </div>
                       }
             >
