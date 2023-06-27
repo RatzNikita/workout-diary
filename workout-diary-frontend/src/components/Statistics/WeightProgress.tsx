@@ -1,4 +1,4 @@
-import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from 'recharts';
+import {CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import styles from './WeightProgress.module.css'
 import {BuiltExerciseType} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 
