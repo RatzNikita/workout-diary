@@ -7,7 +7,6 @@ interface MainState {
     constructorState: string,
     currentProgram: TrainingProgram | null,
     myPrograms: TrainingProgram[],
-    exercises: Exercise[],
 }
 
 const initialState: MainState = {
@@ -16,48 +15,6 @@ const initialState: MainState = {
     myProgramState: 'view',
     constructorState: '',
     myPrograms: [],
-    exercises: [
-        {
-            name: 'Жим ногами',
-            muscle: 'Квадрицепс',
-            group: 'legs'
-        },
-        {
-            name: 'Приседания со штангой',
-            muscle: 'Квадрицепс',
-            group: 'legs'
-        },
-        {
-            name: 'Мёртвая тяга',
-            muscle: 'Бицепс бедра',
-            group: 'legs'
-        },
-        {
-            name: 'Жим лёжа',
-            muscle: 'Грудные',
-            group: 'chest'
-        },
-        {
-            name: 'Разводка гантелей лёжа на скамье',
-            muscle: 'Грудные',
-            group: 'chest'
-        },
-        {
-            name: 'Сгибания рук в тренажёре "Бабочка"',
-            muscle: 'Грудные',
-            group: 'chest'
-        },
-        {
-            name: 'Тяга штанги в наклоне',
-            muscle: 'Широчайшие',
-            group: 'back'
-        },
-        {
-            name: 'Подтягивания широким хватом',
-            muscle: 'Трапецевидная',
-            group: 'back'
-        },
-    ]
 }
 
 const mainSlice = createSlice({

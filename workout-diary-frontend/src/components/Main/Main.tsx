@@ -1,7 +1,7 @@
 import {MyProgram} from "@component/components/MyProgram/MyProgram";
 import {useAppSelector} from "@component/hooks/hooks";
 import styles from './Main.module.css'
-import {Library} from "@component/components/Library/Library";
+import {ExercisesTable} from "@component/components/Library/ExercisesTable/ExercisesTable";
 import {WeightProgress} from "@component/components/Statistics/WeightProgress";
 
 
@@ -14,9 +14,7 @@ export const Main = () => {
             case 'my-program':
                 return (<MyProgram/>)
             case 'exercises' :
-                return (<Library/>)
-            case 'statistics':
-                return (<WeightProgress/>)
+                return (<ExercisesTable/>)
             default:
                 return (
                     <div>пока ничего</div>

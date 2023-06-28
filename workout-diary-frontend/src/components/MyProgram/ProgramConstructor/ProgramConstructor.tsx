@@ -6,6 +6,7 @@ import {useAppDispatch} from "@component/hooks/hooks";
 import {setProgram} from "@component/store/reducers/mainSlice";
 import {WorkoutBuilder} from "@component/components/MyProgram/ProgramConstructor/WorkoutBuilder/WorkoutBuilder";
 import {Workout} from "@component/types/workoutTypes";
+import {createProgram} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 
 export const daysOfWeek: WeekDaysType[] = [
     {dayName: 'mon', dayNameRu: 'Пн', fullDayName: 'Понедельник'},
@@ -61,7 +62,7 @@ export const ProgramConstructor = ({handleSetMyProgramState} : ProgramConstructo
     }
 
     const handleSaveProgram = (workoutProgram: Workout[]) => {
-        dispatch(setProgram({name: programName, workouts: workoutProgram}))
+        dispatch(createProgram({name: programName, workouts: workoutProgram}))
         handleSetMyProgramState('viewMain')
     }
 

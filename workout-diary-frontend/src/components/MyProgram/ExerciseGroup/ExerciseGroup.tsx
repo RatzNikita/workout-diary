@@ -22,7 +22,7 @@ export const ExerciseGroup = ({value, children}: ExerciseGroupProps) => {
                 <ListItemText primary={value}/>
                 {open ? <ExpandLess/> : <ExpandMore/>}
             </ListItemButton>
-            <Collapse in={open} timeout="auto" unmountOnExit orientation="horizontal">
+            <Collapse in={open} timeout="auto" unmountOnExit orientation="vertical">
                 {children}
             </Collapse>
         </div>
