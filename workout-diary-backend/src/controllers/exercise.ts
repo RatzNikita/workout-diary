@@ -1,16 +1,13 @@
 import {Request, Response} from "express";
 import Exercise from "../models/exercise"
+import {ExerciseType} from "../types/workoutTypes";
 
- interface Exercise {
-    name: string,
-    muscle: string,
-    group: string,
-}
+
 
 export function createExercise(req: Request, res : Response) {
     const {name, muscle, group} = req.body;
     Exercise.create({name, muscle, group})
-        .then((exercise : Exercise) => {
+        .then((exercise : ExerciseType) => {
             res.send(exercise)
         })
         .catch((err : Error) => res.status(500).send({message: err.message}))
@@ -18,7 +15,7 @@ export function createExercise(req: Request, res : Response) {
 
 export function getExercises(req: Request, res : Response) {
     Exercise.find({})
-        .then((exercises : Exercise) => {
+        .then((exercises : ExerciseType) => {
             res.send(exercises)
         })
         .catch((err : Error) => res.status(500).send({message: err.message}))
