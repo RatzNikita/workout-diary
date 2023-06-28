@@ -15,9 +15,10 @@ import {
 import React from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import styles from './ExercisesList.module.css'
-import {useAppSelector} from "@component/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {Exercise, GroupExercise} from "@component/types/workoutTypes";
 import {ExerciseGroup} from "@component/components/MyProgram/ExerciseGroup/ExerciseGroup";
+import {getExercises} from "@component/store/reducers/exercises/exercisesThunks";
 
 
 export const exerciseGroups: GroupExercise[] = [
@@ -36,10 +37,15 @@ const repsDefault = '8'
 
 export const ExercisesList = ({handleChoiceExercise}: ExercisesListProps) => {
 
-    const exercises = useAppSelector(state => state.main.exercises)
+    const exercises = useAppSelector(state => state.exercises.exercises)
     const [expandedExercise, setExpandedExercise] = React.useState<Exercise>()
     const [sets, setSets] = React.useState(setsDefault)
     const [reps, setReps] = React.useState(repsDefault)
+    const dispatch = useAppDispatch();
+
+    React.useEffect(() => {
+        dispatch(getExercises())
+    },[])
 
     const handleSetExercise = (ex: Exercise) => {
         setSets(setsDefault)

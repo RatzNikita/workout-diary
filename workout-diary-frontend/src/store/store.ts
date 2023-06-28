@@ -1,8 +1,12 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import mainSlice from "@component/store/reducers/mainSlice";
+import exercisesSlice from "@component/store/reducers/exercises/exercisesSlice";
+import trainingProgramsSlice from "@component/store/reducers/trainingPrograms/trainingProgramsSlice";
 
 const reducer = combineReducers({
-    main: mainSlice
+    main: mainSlice,
+    exercises: exercisesSlice,
+    trainingPrograms: trainingProgramsSlice,
 })
 
 const store = configureStore({
