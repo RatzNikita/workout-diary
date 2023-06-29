@@ -2,10 +2,39 @@ import TrainingProgram from '../models/trainingProgram'
 import {TrainingProgramType} from "../types/workoutTypes";
 import {Request, Response} from "express";
 
-export function createProgram(req: Request, res : Response) {
-    console.log(req.body)
+export function createProgram(req: Request, res: Response) {
     const program: TrainingProgramType = req.body;
     TrainingProgram.create(program)
-        .then((program :TrainingProgramType) => res.send(program))
-        .catch((err :Error) => res.status(500).send({message: err.message}))
+        .then((program: TrainingProgramType) => {
+            TrainingProgram.findOne({_id: program._id}).populate(
+                {
+                    path: 'workouts',
+                    populate: {
+                        path: 'exercises',
+                        populate: {
+                            path: 'exercise'
+                        }
+                    }
+                }
+            )
+                .then((program: TrainingProgramType) => res.send(program))
+        })
+        .catch((err: Error) => res.status(500).send({message: err.message}))
+}
+
+export function getAllPrograms(req: Request, res: Response) {
+    TrainingProgram.find({}).populate(
+        {
+            path: 'workouts',
+            populate: {
+                path: 'exercises',
+                populate: {
+                    path: 'exercise'
+                }
+            }
+        }
+    )
+        .then((programs: TrainingProgramType[]) => res.send(programs))
+        .catch((err: Error) => res.status(500).send({message: err.message}))
+
 }

@@ -8,17 +8,31 @@ const trainingProgramSchema = new mongoose.Schema({
         required: true
     },
     workouts: [{
-        name: {
+        _id: false,
+        day: {
             type: String,
-            minLength: 4,
-            maxLength: 30,
             required: true
         },
-        exercises: {
-            type: [mongoose.Schema.Types.ObjectId],
-            ref: 'exercise',
-            default: [],
-        }
+        exercises: [{
+            _id: false,
+            exercise: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'exercise',
+                required: true
+            },
+            sets: {
+                type: Number,
+                required: true,
+            },
+            reps: {
+                type: Number,
+                required: true,
+            },
+            weight: {
+                type: Number,
+                default: 0,
+            }
+        }]
     }],
     createdAt: {
         type: mongoose.Schema.Types.Date,
