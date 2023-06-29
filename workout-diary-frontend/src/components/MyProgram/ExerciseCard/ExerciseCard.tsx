@@ -2,7 +2,6 @@ import {Box, IconButton} from "@mui/material";
 import styles from './ExerciseCard.module.scss'
 import React from "react";
 import {useAppDispatch} from "@component/hooks/hooks";
-import {setWorkout} from "@component/store/reducers/mainSlice";
 import {CardRow} from "@component/components/MyProgram/ExerciseCard/CardRow/CardRow";
 import {QueryStats} from "@mui/icons-material";
 import {BuiltExercise, Workout} from "@component/types/workoutTypes";
@@ -23,7 +22,7 @@ export const ExerciseCard = ({workout,handleExpandStats}: ExerciseCardProps) => 
             }
             return exe;
         })
-        dispatch(setWorkout({exercises: newExercises, day: workout.day}))
+      //  dispatch(setWorkout({exercises: newExercises, day: workout.day}))
     }
 
     return (

@@ -2,16 +2,22 @@ import {Button, Divider, IconButton, Typography} from "@mui/material";
 import React from "react";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import styles from './AvailablePrograms.module.css'
-import {setCurrentProgram, TrainingProgram} from "@component/store/reducers/mainSlice";
 import CheckIcon from "@mui/icons-material/Check";
+import {TrainingProgram} from "@component/types/workoutTypes";
+import {setCurrentProgram} from "@component/store/reducers/trainingPrograms/trainingProgramsSlice";
+import {getPrograms} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 
 
 export const AvailablePrograms = () => {
 
-    const myPrograms = useAppSelector(state => state.main.myPrograms)
-    const currentProgram = useAppSelector(state => state.main.currentProgram)
+    const availablePrograms = useAppSelector(state => state.trainingPrograms.trainingPrograms)
+    const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
     const dispatch = useAppDispatch();
     const [expandedProgram, setExpandedProgram] = React.useState(currentProgram)
+    
+    React.useEffect(() => {
+        dispatch(getPrograms())
+    },[])
 
     const handleSetCurrentProgram = (program: TrainingProgram) => {
         dispatch(setCurrentProgram(program))
@@ -24,7 +30,7 @@ export const AvailablePrograms = () => {
     return (
         <div className={styles.container}>
             <div className={styles.programsList}>
-                {myPrograms?.map((program) => {
+                {availablePrograms?.map((program) => {
                     return (
                         <div key={program.name}>
                             <IconButton disabled={program.name === currentProgram?.name}

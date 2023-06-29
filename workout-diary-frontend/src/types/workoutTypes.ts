@@ -23,6 +23,13 @@ export interface GroupExercise {
 }
 
 export interface TrainingProgram {
+    _id: string,
     name: string,
-    workouts: Workout[]
+    workouts: Workout[],
+    createdAt: string,
+}
+
+export interface TrainingProgramRequest {
+    name: string,
+    workouts: Workout[],
 }

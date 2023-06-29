@@ -5,7 +5,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {useAppDispatch} from "@component/hooks/hooks";
 import {setProgram} from "@component/store/reducers/mainSlice";
 import {WorkoutBuilder} from "@component/components/MyProgram/ProgramConstructor/WorkoutBuilder/WorkoutBuilder";
-import {Workout} from "@component/types/workoutTypes";
+import {TrainingProgram, Workout} from "@component/types/workoutTypes";
 import {createProgram} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 
 export const daysOfWeek: WeekDaysType[] = [

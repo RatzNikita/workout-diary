@@ -1,21 +1,26 @@
 import {TrainingProgram} from "@component/types/workoutTypes";
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {createProgram, getPrograms} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 
 interface TrainingProgramsState {
     error: string | null,
     trainingPrograms: TrainingProgram[],
+    currentProgram: TrainingProgram | null,
 }
 
 const initialState : TrainingProgramsState = {
     error: null,
-    trainingPrograms: []
+    trainingPrograms: [],
+    currentProgram: null,
 }
 
 const trainingProgramsSlice = createSlice({
     name: 'trainingPrograms',
     initialState,
     reducers: {
+        setCurrentProgram(state,action : PayloadAction<TrainingProgram>) {
+            state.currentProgram = action.payload
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(createProgram.fulfilled,(state,action) => {
@@ -33,4 +38,5 @@ const trainingProgramsSlice = createSlice({
     }
 })
 
+export const {setCurrentProgram} = trainingProgramsSlice.actions
 export default trainingProgramsSlice.reducer;

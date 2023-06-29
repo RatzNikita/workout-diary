@@ -9,7 +9,7 @@ import {CurrentProgram} from "@component/components/MyProgram/CurrentProgram/Cur
 
 export const MyProgram = () => {
 
-    const currentProgram = useAppSelector(state => state.main.currentProgram)
+    const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
     const [myProgramState, setMyProgramState] = React.useState('view')
 
     const handleChangeState = (state: string) => {

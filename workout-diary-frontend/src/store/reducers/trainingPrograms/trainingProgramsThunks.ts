@@ -1,10 +1,10 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import $api from "@component/service/api/api";
-import {TrainingProgram} from "@component/types/workoutTypes";
+import {TrainingProgramRequest} from "@component/types/workoutTypes";
 
 export const createProgram = createAsyncThunk(
     '/createTrainingProgram',
-    async (program : TrainingProgram) => {
+    async (program : TrainingProgramRequest) => {
         const response = await $api.post('/trainingProgram',program)
         return {
             trainingProgram: response.data,
