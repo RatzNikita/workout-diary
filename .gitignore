@@ -7,7 +7,8 @@ workout-diary-frontend/node_modules
 .pnp.js
 
 # testing
-/coverage
+workout-diary-backend/coverage
+workout-diary-frontend/coverage
 
 # next.js
 workout-diary-frontend/.next/
