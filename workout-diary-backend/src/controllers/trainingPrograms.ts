@@ -5,7 +5,7 @@ import {Request, Response} from "express";
 export function createProgram(req: Request, res: Response) {
     const program: TrainingProgramType = req.body;
     TrainingProgram.create(program)
-        .then((program: TrainingProgramType) => {
+        .then((program) => {
             TrainingProgram.findOne({_id: program._id}).populate(
                 {
                     path: 'workouts',
@@ -17,7 +17,7 @@ export function createProgram(req: Request, res: Response) {
                     }
                 }
             )
-                .then((program: TrainingProgramType) => res.send(program))
+                .then((program) => res.send(program))
         })
         .catch((err: Error) => res.status(500).send({message: err.message}))
 }
@@ -34,7 +34,7 @@ export function getAllPrograms(req: Request, res: Response) {
             }
         }
     )
-        .then((programs: TrainingProgramType[]) => res.send(programs))
+        .then((programs) => res.send(programs))
         .catch((err: Error) => res.status(500).send({message: err.message}))
 
 }

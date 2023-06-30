@@ -1,10 +1,11 @@
 import exerciseRouter from './routes/exercise'
 import trainingProgramRouter from './routes/trainingProgram'
 import {Request, Response} from "express";
-const bodyParser = require('body-parser')
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
+import bodyParser from "body-parser";
+import express from 'express'
+import mongoose from "mongoose";
+import cors from 'cors'
+
 
 const app = express()
 
