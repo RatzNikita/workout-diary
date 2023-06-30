@@ -1,7 +1,6 @@
 import * as db from '../../service/db'
 import supertest from 'supertest'
 import app from '../../../src/app'
-import {expect} from "@jest/globals";
 
 const testExercise = {name: 'squats', muscle: 'Big muscle', group: 'legs'}
 const invalidExercise = {name: 's', muscle: 0, group: 'face'}
