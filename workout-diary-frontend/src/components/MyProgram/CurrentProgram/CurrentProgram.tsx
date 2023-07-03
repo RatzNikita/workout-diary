@@ -2,20 +2,20 @@ import styles from "@component/components/MyProgram/MyProgram.module.css";
 import {Button, Divider} from "@mui/material";
 import {ExerciseCard} from "@component/components/MyProgram/ExerciseCard/ExerciseCard";
 import React from "react";
-import {TrainingProgram} from "@component/store/reducers/mainSlice";
-import {WeightProgress} from "@component/components/Statistics/WeightProgress";
+import {WeightProgress} from "@component/components/MyProgram/CurrentProgram/Statistics/WeightProgress";
 import {Workout} from "@component/types/workoutTypes";
+import {useAppSelector} from "@component/hooks/hooks";
 
 interface CurrentProgramProps {
-    currentProgram: TrainingProgram | null,
     handleChangeMenuState: (state: string) => void,
 }
 
 
-export const CurrentProgram = ({currentProgram, handleChangeMenuState}: CurrentProgramProps) => {
+export const CurrentProgram = ({handleChangeMenuState}: CurrentProgramProps) => {
+    const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
     const [expandedWorkout, setExpandedWorkout] = React.useState<Workout | null>(null)
 
-    const onExpandStats = (workout: Workout) => {
+    const onExpandStats = (workout: Workout | null) => {
         setExpandedWorkout(workout)
     }
 
@@ -31,10 +31,10 @@ export const CurrentProgram = ({currentProgram, handleChangeMenuState}: CurrentP
                                                   key={workout.day}/>)
                         })
                         :
-                        <div>
-                            <ExerciseCard workout={expandedWorkout} handleExpandStats={onExpandStats}/>
+                        <>
+                            <ExerciseCard workout={expandedWorkout} handleExpandStats={onExpandStats} statsShown/>
                             <WeightProgress exercises={expandedWorkout.exercises}/>
-                        </div>
+                        </>
                     }
 
                 </div>

@@ -1,6 +1,6 @@
 import {CartesianGrid, Line, LineChart, Tooltip, XAxis, YAxis} from 'recharts';
 import styles from './WeightProgress.module.css'
-import {BuiltExerciseType} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
+import {BuiltExercise} from "@component/types/workoutTypes";
 
 const data = [
     {name: '25 may', weight: 45},
@@ -34,7 +34,7 @@ const data = [
 ];
 
 interface WeightProgressProps {
-    exercises: BuiltExerciseType[],
+    exercises: BuiltExercise[],
 }
 
 export const WeightProgress = ({exercises}: WeightProgressProps) => {
@@ -43,6 +43,7 @@ export const WeightProgress = ({exercises}: WeightProgressProps) => {
         <div>
             {exercises.map((ex) => {
                 return (<div className={styles.container} key={ex.exercise.name}>
+                        <h4 className={styles.exerciseTitle}>{ex.exercise.name}</h4>
                         <LineChart width={600} height={300} data={data}
                                    margin={{top: 5, right: 20, bottom: 5, left: 0}}>
                             <Line type="monotone" dataKey="weight" stroke="#8884d8"/>

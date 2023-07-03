@@ -3,17 +3,19 @@ import styles from './ExerciseCard.module.scss'
 import React from "react";
 import {useAppDispatch} from "@component/hooks/hooks";
 import {CardRow} from "@component/components/MyProgram/ExerciseCard/CardRow/CardRow";
-import {QueryStats} from "@mui/icons-material";
+import {ArrowLeft, QueryStats} from "@mui/icons-material";
 import {BuiltExercise, Workout} from "@component/types/workoutTypes";
 
 interface ExerciseCardProps {
     workout: Workout,
-    handleExpandStats: (workout: Workout) => void,
+    handleExpandStats: (workout: Workout | null) => void,
+    statsShown?: boolean
 }
 
-export const ExerciseCard = ({workout,handleExpandStats}: ExerciseCardProps) => {
+export const ExerciseCard = ({statsShown = false,workout, handleExpandStats}: ExerciseCardProps) => {
 
     const dispatch = useAppDispatch();
+    const [expanded, setExpanded] = React.useState(false)
 
     const handleChangeWeight = (weight: number, ex: BuiltExercise) => {
         const newExercises = workout.exercises.map(exe => {
@@ -22,7 +24,11 @@ export const ExerciseCard = ({workout,handleExpandStats}: ExerciseCardProps) => 
             }
             return exe;
         })
-      //  dispatch(setWorkout({exercises: newExercises, day: workout.day}))
+        //  dispatch(setWorkout({exercises: newExercises, day: workout.day}))
+    }
+
+    const handleExpandExercise = (workout: Workout | null, state: boolean) => {
+        handleExpandStats(workout)
     }
 
     return (
@@ -42,8 +48,16 @@ export const ExerciseCard = ({workout,handleExpandStats}: ExerciseCardProps) => 
                 </div>
             </div>
             <div className={styles.actionButtons}>
-                <IconButton onClick={() => handleExpandStats(workout)}
-                ><QueryStats/></IconButton>
+                {statsShown
+                    ? <>
+                        <IconButton onClick={() => handleExpandExercise(null, false)}
+                        ><ArrowLeft/></IconButton>
+                    </>
+                    : <>
+                        <IconButton onClick={() => handleExpandExercise(workout, true)}
+                        ><QueryStats/></IconButton>
+                    </>
+                }
             </div>
         </Box>
     )

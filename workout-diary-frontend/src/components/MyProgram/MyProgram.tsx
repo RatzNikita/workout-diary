@@ -1,5 +1,4 @@
 import {Button} from "@mui/material";
-import {useAppSelector} from "@component/hooks/hooks";
 import {ProgramConstructor} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 import styles from './MyProgram.module.css'
 import AddIcon from '@mui/icons-material/Add';
@@ -9,7 +8,6 @@ import {CurrentProgram} from "@component/components/MyProgram/CurrentProgram/Cur
 
 export const MyProgram = () => {
 
-    const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
     const [myProgramState, setMyProgramState] = React.useState('view')
 
     const handleChangeState = (state: string) => {
@@ -28,7 +26,7 @@ export const MyProgram = () => {
             </div>
             <div className={styles.programsContent}>
                 {myProgramState === 'viewAll' && <AvailablePrograms/>}
-                {myProgramState === 'viewMain' && <CurrentProgram handleChangeMenuState={handleChangeState} currentProgram={currentProgram}/>}
+                {myProgramState === 'viewMain' && <CurrentProgram handleChangeMenuState={handleChangeState}/>}
                 {myProgramState === 'create' && <ProgramConstructor handleSetMyProgramState={handleChangeState}/>}
             </div>
         </div>

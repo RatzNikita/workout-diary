@@ -2,7 +2,7 @@ import {MyProgram} from "@component/components/MyProgram/MyProgram";
 import {useAppSelector} from "@component/hooks/hooks";
 import styles from './Main.module.css'
 import {ExercisesTable} from "@component/components/Library/ExercisesTable/ExercisesTable";
-import {WeightProgress} from "@component/components/Statistics/WeightProgress";
+import {WeightProgress} from "@component/components/MyProgram/CurrentProgram/Statistics/WeightProgress";
 
 
 export const Main = () => {
