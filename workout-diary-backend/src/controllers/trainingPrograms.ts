@@ -38,3 +38,19 @@ export function getAllPrograms(req: Request, res: Response) {
         .catch((err: Error) => res.status(500).send({message: err.message}))
 
 }
+
+export function setWeight(req: Request, res: Response) {
+    console.log(req.body)
+    const {programID, workoutDay, exerciseID, weight} = req.body
+    TrainingProgram.findOneAndUpdate({_id: programID},
+        {$set: {"workouts.$[i].exercises.$[j].weight": weight}},
+        {
+            arrayFilters: [{
+                "i.day": workoutDay
+            }, {
+                "j.exercise": exerciseID,
+            }], new: true,
+        })
+        .then((program) => res.send(program?.workouts.filter(w => w.day === workoutDay)))
+        .catch((err: Error) => res.status(500).send({message: err.message}))
+}
