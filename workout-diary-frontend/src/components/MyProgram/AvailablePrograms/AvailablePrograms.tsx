@@ -33,20 +33,19 @@ export const AvailablePrograms = () => {
                 {availablePrograms?.map((program) => {
                     return (
                         <div key={program.name}>
-                            <IconButton disabled={program.name === currentProgram?.name}
-                                        onClick={() => handleSetCurrentProgram(program)}><CheckIcon/></IconButton>
                             <Button className={`${styles.programsListButton} ${program.name === currentProgram?.name
                             && styles.programListButtonActive}`}
                                     onClick={() => handleExpandProgram(program)}>
                                 {program.name}</Button>
-
                         </div>
                     )
                 })}
             </div>
             {expandedProgram &&
                 <div className={styles.programContent}>
-                    <Typography align='center' variant='h4'>{expandedProgram.name}</Typography>
+                    <Typography align='center' variant='h4'>{expandedProgram.name}<IconButton disabled={expandedProgram.name === currentProgram?.name}
+                                                                                              onClick={() => handleSetCurrentProgram(expandedProgram)}><CheckIcon/></IconButton></Typography>
+
                     <Divider/>
                     <div className={styles.programExercises}>
                         {expandedProgram.workouts.map((workout) => {

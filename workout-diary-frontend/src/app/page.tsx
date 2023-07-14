@@ -24,7 +24,7 @@ export default function Home() {
     return (
         <Provider store={store}>
             <ThemeProvider theme={theme}>
-                <main className="flex min-h-screen flex-col items-center justify-between p-2  max-w-screen-xl m-auto">
+                <main className="flex min-h-screen flex-col items-center justify-between p-2  max-w-screen-xl m-auto bg-[#e9e9e9]">
                     <Header/>
                     <Main/>
                     <div> footer</div>

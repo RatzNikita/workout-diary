@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import $api from "@component/service/api/api";
-import {TrainingProgramRequest} from "@component/types/workoutTypes";
+import {TrainingProgramRequest, WeightChangeRequest} from "@component/types/workoutTypes";
 
 export const createProgram = createAsyncThunk(
     '/createTrainingProgram',
@@ -19,5 +19,14 @@ export const getPrograms = createAsyncThunk(
         return {
             trainingPrograms: response.data,
         }
+    }
+)
+
+
+export const setWeight = createAsyncThunk(
+    '/setWeight',
+    async (data: WeightChangeRequest) => {
+        const response = await $api.patch('/trainingProgram/setWeight', data)
+        return response.data
     }
 )

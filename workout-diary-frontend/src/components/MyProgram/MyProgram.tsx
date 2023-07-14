@@ -22,7 +22,6 @@ export const MyProgram = () => {
                 <Button className={myProgramState === 'viewAll' ? styles.buttonActive : undefined}
                         onClick={() => handleChangeState('viewAll')}>Доступные программы</Button>
                 <Button onClick={() => handleChangeState('create')} endIcon={<AddIcon/>}>Добавить</Button>
-
             </div>
             <div className={styles.programsContent}>
                 {myProgramState === 'viewAll' && <AvailablePrograms/>}

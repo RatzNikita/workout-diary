@@ -1,10 +1,11 @@
 import {Box, IconButton} from "@mui/material";
 import styles from './ExerciseCard.module.scss'
 import React from "react";
-import {useAppDispatch} from "@component/hooks/hooks";
+import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {CardRow} from "@component/components/MyProgram/ExerciseCard/CardRow/CardRow";
 import {ArrowLeft, QueryStats} from "@mui/icons-material";
 import {BuiltExercise, Workout} from "@component/types/workoutTypes";
+import {setWeight} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 
 interface ExerciseCardProps {
     workout: Workout,
@@ -12,19 +13,21 @@ interface ExerciseCardProps {
     statsShown?: boolean
 }
 
-export const ExerciseCard = ({statsShown = false,workout, handleExpandStats}: ExerciseCardProps) => {
+export const ExerciseCard = ({statsShown = false, workout, handleExpandStats}: ExerciseCardProps) => {
 
     const dispatch = useAppDispatch();
     const [expanded, setExpanded] = React.useState(false)
+    const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
 
     const handleChangeWeight = (weight: number, ex: BuiltExercise) => {
-        const newExercises = workout.exercises.map(exe => {
-            if (exe.exercise === ex.exercise) {
-                return {...exe, weight: weight}
-            }
-            return exe;
-        })
-        //  dispatch(setWorkout({exercises: newExercises, day: workout.day}))
+        if (currentProgram) {
+            dispatch(setWeight({
+                programID: currentProgram._id,
+                workoutDay: workout.day,
+                exerciseID: ex.exercise._id,
+                weight: weight
+            }))
+        }
     }
 
     const handleExpandExercise = (workout: Workout | null, state: boolean) => {

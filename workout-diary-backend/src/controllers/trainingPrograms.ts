@@ -40,7 +40,6 @@ export function getAllPrograms(req: Request, res: Response) {
 }
 
 export function setWeight(req: Request, res: Response) {
-    console.log(req.body)
     const {programID, workoutDay, exerciseID, weight} = req.body
     TrainingProgram.findOneAndUpdate({_id: programID},
         {$set: {"workouts.$[i].exercises.$[j].weight": weight}},
@@ -49,8 +48,21 @@ export function setWeight(req: Request, res: Response) {
                 "i.day": workoutDay
             }, {
                 "j.exercise": exerciseID,
-            }], new: true,
+            }],
+            new: true,
         })
-        .then((program) => res.send(program?.workouts.filter(w => w.day === workoutDay)))
+        .populate({
+            path: 'workouts',
+            populate: {
+                path: 'exercises',
+                populate: {
+                    path: 'exercise'
+                }
+            }
+        })
+        .then((program) => {
+            console.log(program?.workouts)
+            res.send(program?.workouts.find(w => w.day === workoutDay))
+        })
         .catch((err: Error) => res.status(500).send({message: err.message}))
 }

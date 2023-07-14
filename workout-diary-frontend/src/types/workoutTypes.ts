@@ -33,3 +33,10 @@ export interface TrainingProgramRequest {
     name: string,
     workouts: Workout[],
 }
+
+export interface WeightChangeRequest {
+    programID: string,
+    workoutDay: string,
+    exerciseID: string,
+    weight: number,
+}
