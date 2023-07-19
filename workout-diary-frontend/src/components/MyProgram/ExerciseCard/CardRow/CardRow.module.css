@@ -3,10 +3,15 @@
     font-size: 2vh;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: #828282 1px solid;
     align-items: center;
     min-height: 48px;
     font-weight: bold;
+}
+.cardTitle {
+
+}
+.cardText {
+    font-weight: 800;
 }
 .cardItemText {
     display: flex;
@@ -14,7 +19,14 @@
     justify-content: space-between;
     align-items: center;
     max-width: 80%;
-    margin: 0;
+    margin: 0 0 0 5px;
+}
+.cardItemTextPrimary {
+    font-weight: 600;
+}
+.cardItemTextSecondary {
+    font-weight: 600;
+
 }
 .cardInput {
     max-width: 40px;

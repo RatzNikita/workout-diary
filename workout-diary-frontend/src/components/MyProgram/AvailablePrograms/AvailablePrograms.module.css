@@ -8,14 +8,6 @@
     flex-direction: column;
     margin-right: 20px;
 }
-.programsListButton {
-    min-width: 100px;
-    text-align: start;
-    border-radius: 0;
-}
-.programListButtonActive {
-    border-bottom: #424242 3px solid;
-}
 
 .programContent {
     display: flex;

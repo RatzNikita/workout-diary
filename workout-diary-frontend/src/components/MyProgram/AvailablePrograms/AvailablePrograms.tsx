@@ -1,4 +1,4 @@
-import {Button, Divider, IconButton, Typography} from "@mui/material";
+import {Divider, IconButton, Typography} from "@mui/material";
 import React from "react";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import styles from './AvailablePrograms.module.css'
@@ -6,6 +6,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import {TrainingProgram} from "@component/types/workoutTypes";
 import {setCurrentProgram} from "@component/store/reducers/trainingPrograms/trainingProgramsSlice";
 import {getPrograms} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
+import {Button} from "@component/components/UI/Button/Button";
 
 
 export const AvailablePrograms = () => {
@@ -33,8 +34,8 @@ export const AvailablePrograms = () => {
                 {availablePrograms?.map((program) => {
                     return (
                         <div key={program.name}>
-                            <Button className={`${styles.programsListButton} ${program.name === currentProgram?.name
-                            && styles.programListButtonActive}`}
+                            <Button active={program.name === expandedProgram?.name}
+                                    size="l"
                                     onClick={() => handleExpandProgram(program)}>
                                 {program.name}</Button>
                         </div>

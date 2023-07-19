@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 body {
-  background: white;
+  background: linear-gradient(to bottom right, #ffffff, #79d0cb);
   border-left: #727272 1px solid;
   border-right: #727272 1px solid;
   max-width: 1280px;
@@ -13,5 +13,8 @@ body {
   font-size: 1.2rem;
   font-weight: 500;
   line-height: 0.8;
-  color: #484848;
+  color: #424242;
+  min-height: 100vh;
+  max-height: max-content;
 }
+

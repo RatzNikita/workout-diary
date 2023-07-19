@@ -1,8 +1,7 @@
-import {Button} from "@mui/material";
 import React from "react";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {setActiveMenu} from "@component/store/reducers/mainSlice";
-import styles from './NavButton.module.css'
+import {Button} from "@component/components/UI/Button/Button";
 
 
 interface NavButtonProps {
@@ -22,9 +21,10 @@ export const NavButton = ({value, buttonText}: NavButtonProps) => {
 
     return (
         <Button
-            className={`${styles.button} ${activeMenu === value && styles.activeButton}`}
             onClick={handleActiveMenu}
-            value={value}>{buttonText}
+            active={activeMenu === value}
+            size='l'
+        >{buttonText}
         </Button>
     )
 }

@@ -17,11 +17,12 @@ export const MyProgram = () => {
     return (
         <div className={styles.programsBar}>
             <div className={styles.actionBar}>
-                <Button className={myProgramState === 'viewMain' ? styles.buttonActive : undefined}
-                        onClick={() => handleChangeState('viewMain')}>Текущая программа</Button>
-                <Button className={myProgramState === 'viewAll' ? styles.buttonActive : undefined}
-                        onClick={() => handleChangeState('viewAll')}>Доступные программы</Button>
-                <Button onClick={() => handleChangeState('create')} endIcon={<AddIcon/>}>Добавить</Button>
+                <button className={myProgramState === 'viewMain' ? styles.buttonActive : styles.navButton}
+                        onClick={() => handleChangeState('viewMain')}>ТЕКУЩАЯ ПРОГРАММА</button>
+                <button className={myProgramState === 'viewAll' ? styles.buttonActive : styles.navButton}
+                        onClick={() => handleChangeState('viewAll')}>ДОСТУПНЫЕ ПРОГРАММЫ</button>
+                <button className={myProgramState === 'create' ? styles.buttonActive : styles.navButton}
+                    onClick={() => handleChangeState('create')}>ДОБАВИТЬ</button>
             </div>
             <div className={styles.programsContent}>
                 {myProgramState === 'viewAll' && <AvailablePrograms/>}

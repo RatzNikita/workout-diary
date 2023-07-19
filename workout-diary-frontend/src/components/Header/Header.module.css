@@ -1,13 +1,18 @@
 .title {
-    font-size: 4vh;
-    background-image: url('../../../public/training-diary.jpg');
+    font-size: 5vh;
     min-width: 250px;
     min-height: 90px;
+    font-weight: 900;
+    padding: 20px;
 }
 .navBar {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+}
+.header {
+    max-height: 25vh;
+    padding: 0;
 }

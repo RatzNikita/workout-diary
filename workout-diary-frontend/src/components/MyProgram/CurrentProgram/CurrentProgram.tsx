@@ -23,7 +23,6 @@ export const CurrentProgram = ({handleChangeMenuState}: CurrentProgramProps) => 
         return (
             <div>
                 <div className={styles.programTitle}>{`Название программы: ${currentProgram.name}`}</div>
-                <Divider/>
                 <div className={styles.cardsContainer}>
                     {!expandedWorkout ?
                         currentProgram.workouts.map(workout => {

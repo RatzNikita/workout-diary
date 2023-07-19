@@ -21,16 +21,36 @@
 .programsBar {
     display: flex;
     flex-direction: column;
-    padding: 5px 25px 5px 5px;
 }
 .programsContent {
     margin: 25px 0 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.actionBar {
+    display: flex;
+    gap: 25px;
+    font-size: 1.2vh;
+    font-weight: 600;
+    background-color: rgba(88,88,88,0.07);
+    min-width: 100%;
+    padding: 10px 0 10px 25px;
+}
+.navButton {
+    padding: 5px;
+    transition: scale 0.2s linear;
+}
+.navButton:hover {
+    scale: 1.15;
 }
 
 .buttonActive {
-    transition: border-bottom-color 0.5s linear;
-    border-bottom: #424242 3px solid;
-    border-radius: 0;
+    scale: 1.15;
+    padding: 5px;
+    border-bottom: solid #424242 3px;
+
 }
 
 .programTitle {

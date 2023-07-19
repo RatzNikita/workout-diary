@@ -57,7 +57,9 @@ export const CardRow = ({exercise, submitWeight}: CardRowProps) => {
             >
                 <ListItemText className={styles.cardItemText}
                               primary={exercise.exercise.name}
-                              secondary={`${exercise.sets}x${exercise.reps}`}/>
+                              secondary={`${exercise.sets}x${exercise.reps}`}
+                primaryTypographyProps={{className: styles.cardItemTextPrimary}}
+                secondaryTypographyProps={{className: styles.cardItemTextSecondary}}/>
             </ListItem>
         </List>
     )
