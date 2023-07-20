@@ -1,0 +1,26 @@
+.button {
+    background-color: inherit;
+    max-height: 40px;
+    font-weight: 600;
+    font-size: 1vh;
+    padding: 5px;
+    margin: 10px;
+    transition: scale .2s linear;
+}
+.sizeS {
+    font-size: 0.7vh;
+}
+.sizeL {
+    font-size: 1.4vh;
+}
+
+.button:hover {
+    scale: 1.2;
+}
+.activeButton {
+    border-bottom: #424242 3px solid;
+    scale: 1.2;
+}
+.activeButton:hover {
+    cursor: default;
+}
