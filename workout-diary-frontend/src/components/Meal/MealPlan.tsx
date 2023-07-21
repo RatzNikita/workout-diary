@@ -3,6 +3,8 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import styles from './Meal.module.css'
 import {Button} from "@component/components/UI/Button/Button";
 import {PieChartData, PieChartWithPercents} from "@component/components/UI/PieChartWithPercents/PieChartWithPercents";
+import {TodayMeal} from "@component/components/Meal/TodayMeal/TodayMeal";
+import {CreateMealPopup} from "@component/components/Meal/CreateMealPopup/CreateMealPopup";
 
 
 type Inputs = {
@@ -15,6 +17,7 @@ type Inputs = {
 export const MealPlan = () => {
 
     const [energyValue, setEnergyValue] = React.useState(0)
+    const [mealPopupOpened,setMealPopupOpened] = React.useState(false)
 
     const {
         register,
@@ -56,13 +59,8 @@ export const MealPlan = () => {
         },
     ]
 
-
-
     return (
         <div className={styles.container}>
-            <h4 className={styles.title}>
-                Meal Plan
-            </h4>
             <div className={styles.mealTablet}>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.mealForm} autoComplete="off">
                     <h5>Nutrients, g</h5>
@@ -86,6 +84,8 @@ export const MealPlan = () => {
                 </form>
                 <PieChartWithPercents data={pieChartData}/>
             </div>
+            <TodayMeal onShowPopup={setMealPopupOpened}/>
+            <CreateMealPopup opened={mealPopupOpened}/>
         </div>
     )
 }
