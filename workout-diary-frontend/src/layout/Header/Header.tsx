@@ -1,27 +1,28 @@
 'use client'
-import {Container} from "@mui/material";
 import React from "react";
-import {useAppSelector} from "@component/hooks/hooks";
 import styles from './Header.module.css'
-import {NavButton} from "@component/components/NavButton/NavButton";
+import {HeaderProps} from "@component/layout/Header/Header.props";
+import cn from "classnames";
+import Link from "next/link";
+import {usePathname} from "next/navigation";
 
+export const Header = ({className, ...props}: HeaderProps) => {
 
-export const Header = () => {
-
-    const activeMenu = useAppSelector(state => state.main.activeMenu)
-
+    const path = usePathname().split('/');
 
     return (
-        <Container className={styles.header}>
+        <header className={cn(styles.header, className)} {...props}>
             <div className={styles.navBar}>
-                <div className={styles.title}>Training diary</div>
-                <div>
-                    <NavButton value='statistics' buttonText={'STATISTICS'}/>
-                    <NavButton value='my-program' buttonText={'MY PROGRAM'}/>
-                    <NavButton value='exercises' buttonText={'EXERCISES'}/>
-                    <NavButton value='meal' buttonText={'MEAL PLAN'}/>
-                </div>
+                <h1 className={styles.title}>Training diary</h1>
+                <nav>
+                    <Link href={"/program/my"}
+                          className={path[1] === 'program' ? styles.buttonActive : styles.navButton}>PROGRAMS</Link>
+                    <Link href={"/meal"}
+                          className={path[1] === 'meal' ? styles.buttonActive : styles.navButton}>MEAL PLAN</Link>
+                    <Link href={"/library/exercises"}
+                          className={path[1] === 'library' ? styles.buttonActive : styles.navButton}>LIBRARY</Link>
+                </nav>
             </div>
-        </Container>
+        </header>
     )
 }

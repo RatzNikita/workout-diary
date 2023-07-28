@@ -1,0 +1,49 @@
+.cardItem {
+    padding: 0 70px 0 0;
+    font-size: 2vh;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 48px;
+    font-weight: bold;
+}
+.cardTitle {
+
+}
+.cardText {
+    font-weight: 800;
+}
+.cardItemText {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 80%;
+    margin: 0 0 0 5px;
+}
+.cardItemTextPrimary {
+    font-weight: 600;
+}
+.cardItemTextSecondary {
+    font-weight: 600;
+
+}
+.cardInput {
+    max-width: 40px;
+    min-width: 10px;
+    margin: 0;
+    padding: 0;
+    font-size: 2vh;
+    border: none;
+}
+
+.row {
+    padding: 0;
+}
+
+
+
+.rowAction {
+    display: flex;
+    flex-direction: row;
+}

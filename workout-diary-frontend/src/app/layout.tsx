@@ -1,7 +1,12 @@
 'use client'
 import './globals.scss'
 import React from "react";
-import {Layout} from "@component/layout/layout";
+import {createTheme, ThemeProvider} from "@mui/material";
+import {Provider} from "react-redux";
+import store from "@component/store/store";
+import {Header} from "@component/layout/Header/Header";
+import {Footer} from "@component/layout/Footer/Footer";
+import styles from './styles.module.css'
 
 // const inter = Inter({subsets: ['latin']})
 
@@ -16,14 +21,30 @@ export default function RootLayout({
     children: React.ReactNode
 }) {
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: '#212121',
+            },
+            secondary: {
+                main: '#eeeeee',
+            },
+        },
+    });
 
 
     return (
         <html lang="en">
-        <body>
-        <Layout>
-            {children}
-        </Layout>
+        <body className={styles.container}>
+        <ThemeProvider theme={theme}>
+            <Provider store={store}>
+                <Header className={styles.header}/>
+                <main className={styles.main}>
+                    {children}
+                </main>
+                <Footer className={styles.footer}/>
+            </Provider>
+        </ThemeProvider>
         </body>
         </html>
     )

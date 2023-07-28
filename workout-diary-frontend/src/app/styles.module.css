@@ -1,0 +1,17 @@
+.container {
+    max-width: 1200px;
+    max-height: 100vh;
+}
+
+.header {
+    max-width: 1200px;
+    min-height: 10vh;
+}
+
+.main {
+    min-height: 85vh;
+}
+
+.footer {
+    min-height: 5vh;
+}

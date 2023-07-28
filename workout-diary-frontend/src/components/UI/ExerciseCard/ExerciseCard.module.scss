@@ -1,0 +1,34 @@
+$card-width: 350px;
+$card-height: 400px;
+
+.card {
+    width: $card-width;
+    height: $card-height;
+    padding: 5px;
+    border-radius: 4px;
+    border: #b2b2b2 1px solid ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(#afefdd, #4ebbda);
+    font-weight: bold;
+}
+.cardContent {
+}
+
+.cardTitle {
+    width: 100%;
+    font-size: 4vh;
+    padding: 10px;
+    text-align: center;
+}
+.cardItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.actionButtons {
+    align-self: flex-end;
+    justify-content: flex-end;
+}
+
