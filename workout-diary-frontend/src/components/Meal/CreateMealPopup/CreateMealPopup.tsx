@@ -1,15 +1,5 @@
 import styles from './CreateMealPopup.module.css'
-import {
-    IconButton,
-    List,
-    ListItem,
-    ListItemText,
-    Table, TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow
-} from "@mui/material";
+import {IconButton} from "@mui/material";
 import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
 import CloseIcon from "@mui/icons-material/Close";
 import {useForm} from "react-hook-form";

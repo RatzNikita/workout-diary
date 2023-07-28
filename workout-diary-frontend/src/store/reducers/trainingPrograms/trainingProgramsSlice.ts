@@ -1,4 +1,4 @@
-import {TrainingProgram, WeightChangeRequest, Workout} from "@component/types/workoutTypes";
+import {TrainingProgram, Workout} from "@component/types/workoutTypes";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {createProgram, getPrograms, setWeight} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 

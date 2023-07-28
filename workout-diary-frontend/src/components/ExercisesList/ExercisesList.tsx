@@ -17,8 +17,8 @@ import CheckIcon from '@mui/icons-material/Check';
 import styles from './ExercisesList.module.css'
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {Exercise, GroupExercise} from "@component/types/workoutTypes";
-import {ExerciseGroup} from "@component/components/MyProgram/ExerciseGroup/ExerciseGroup";
 import {getExercises} from "@component/store/reducers/exercises/exercisesThunks";
+import {ExerciseGroup} from "@component/components/ExerciseGroup/ExerciseGroup";
 
 
 export const exerciseGroups: GroupExercise[] = [

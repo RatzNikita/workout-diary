@@ -1,5 +1,4 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
-import {Exercise, TrainingProgram, Workout} from "@component/types/workoutTypes";
 
 interface MainState {
     activeMenu: string,

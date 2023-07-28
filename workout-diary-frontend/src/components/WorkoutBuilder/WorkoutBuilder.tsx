@@ -1,14 +1,14 @@
-import styles from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor.module.css";
+import styles from "@component/app/program/create/style.module.css";
 import {Box, Button, Divider, IconButton, List, ListItem, ListItemText, Typography} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import DoneIcon from "@mui/icons-material/Done";
-import {ExercisesList} from "@component/components/MyProgram/ExercisesList/ExercisesList";
 import React from "react";
-import {daysOfWeek,} from "@component/components/MyProgram/ProgramConstructor/ProgramConstructor";
 import {BuiltExercise, Exercise, Workout} from "@component/types/workoutTypes";
+import {daysOfWeek} from "@component/app/program/create/page";
+import {ExercisesList} from "@component/components/ExercisesList/ExercisesList";
 
 interface WorkoutBuilderProps {
     weekDays: string[],

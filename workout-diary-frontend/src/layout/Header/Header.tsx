@@ -1,9 +1,9 @@
 'use client'
 import {Container} from "@mui/material";
 import React from "react";
-import {NavButton} from "@component/components/Header/NavButton/NavButton";
 import {useAppSelector} from "@component/hooks/hooks";
 import styles from './Header.module.css'
+import {NavButton} from "@component/components/NavButton/NavButton";
 
 
 export const Header = () => {

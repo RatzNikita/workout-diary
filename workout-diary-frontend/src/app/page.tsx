@@ -1,38 +1,32 @@
 'use client'
-
-import {Header} from "@component/components/Header/Header";
-import {Main} from "@component/components/Main/Main";
 import React from "react";
-import {Provider} from "react-redux";
-import store from "@component/store/store";
-import {createTheme, ThemeProvider} from "@mui/material";
-
+import {useAppSelector} from "@component/hooks/hooks";
+import styles from "@component/app/Home.module.css";
+import {ExercisesTable} from "@component/app/library/exercises/page";
+import {MealPlan} from "@component/app/meal/page";
 
 
 export default function Home() {
 
-    const theme = createTheme({
-        palette: {
-            primary: {
-                main: '#212121',
-            },
-            secondary: {
-                main: '#eeeeee',
-            },
-        },
-    });
+    const activeMenu = useAppSelector(state => state.main.activeMenu)
 
+    function contentSelect() {
+        switch (activeMenu) {
+
+            case 'exercises' :
+                return (<ExercisesTable/>)
+            case 'meal' :
+                return(<MealPlan/>)
+            default:
+                return (
+                    <div>пока ничего</div>
+                )
+        }
+    }
 
     return (
-        <Provider store={store}>
-            <ThemeProvider theme={theme}>
-                <main>
-                    <Header/>
-                    <Main/>
-                    <div> footer</div>
-                </main>
-            </ThemeProvider>
-        </Provider>
-
+        <div className={styles.container}>
+            {contentSelect()}
+        </div>
     )
 }
