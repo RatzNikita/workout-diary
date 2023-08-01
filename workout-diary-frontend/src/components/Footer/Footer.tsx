@@ -1,9 +1,12 @@
-import {FooterProps} from "./Footer.props";
 import cn from "classnames";
 import styles from './Footer.module.css';
 import {format} from 'date-fns';
+import {DetailedHTMLProps, HTMLAttributes} from "react";
 
-export const Footer = ({className, ...props}: FooterProps) => {
+ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
+}
+
+export const Footer = ({className, ...props}: Props) => {
 
     return (
        <footer {...props} className={cn(className, styles.footer)}>

@@ -8,12 +8,10 @@ import {ExerciseCard} from "@component/components/UI/ExerciseCard/ExerciseCard";
 import {WeightProgress} from "@component/components/Statistics/WeightProgress";
 import {useRouter} from "next/navigation";
 
-
-
-
 export default function CurrentProgram() {
 
     const router = useRouter()
+
     const currentProgram = useAppSelector(state => state.trainingPrograms.currentProgram)
     const [expandedWorkout, setExpandedWorkout] = React.useState<Workout | null>(null)
 

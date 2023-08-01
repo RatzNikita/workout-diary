@@ -1,4 +1,4 @@
-'use client'
+"use client"
 import React from "react";
 import {useAppDispatch} from "@component/hooks/hooks";
 import {Workout} from "@component/types/workoutTypes";
@@ -8,21 +8,8 @@ import {Box, Button, Checkbox, FormControlLabel, TextField} from "@mui/material"
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {WorkoutBuilder} from "@component/components/WorkoutBuilder/WorkoutBuilder";
 import {useRouter} from "next/navigation";
-export const daysOfWeek: WeekDaysType[] = [
-    {dayName: 'mon', dayNameRu: 'Пн', fullDayName: 'Понедельник'},
-    {dayName: 'tue', dayNameRu: 'Вт', fullDayName: 'Вторник'},
-    {dayName: 'wed', dayNameRu: 'Ср', fullDayName: 'Среда'},
-    {dayName: 'thu', dayNameRu: 'Чт', fullDayName: 'Четверг'},
-    {dayName: 'fri', dayNameRu: 'Пт', fullDayName: 'Пятница'},
-    {dayName: 'sat', dayNameRu: 'Сб', fullDayName: 'Суббота'},
-    {dayName: 'sun', dayNameRu: 'Вс', fullDayName: 'Воскресенье'}
-]
 
-interface WeekDaysType {
-    dayName: string,
-    dayNameRu: string,
-    fullDayName: string,
-}
+
 
 enum BuildSteps {
     programName,
@@ -33,6 +20,21 @@ enum BuildSteps {
 
 
 export default function ProgramConstructor() {
+
+     const daysOfWeek: WeekDaysType[] = [
+        {dayName: 'mon', fullDayName: 'Monday'},
+        {dayName: 'tue', fullDayName: 'Tuesday'},
+        {dayName: 'wed', fullDayName: 'Wednesday'},
+        {dayName: 'thu', fullDayName: 'Thursday'},
+        {dayName: 'fri', fullDayName: 'Friday'},
+        {dayName: 'sat', fullDayName: 'Saturday'},
+        {dayName: 'sun', fullDayName: 'Sunday'}
+    ]
+
+    interface WeekDaysType {
+        dayName: string | never,
+        fullDayName: string | never,
+    }
 
     const router = useRouter();
 
@@ -78,7 +80,7 @@ export default function ProgramConstructor() {
                 {buildStep > 0 &&
                     <Box className={buildStep > 1 ? styles.hidden : ''}>
                         <div className='flex flex-row justify-start'>
-                            {daysOfWeek.map(({dayName, dayNameRu}) => {
+                            {daysOfWeek.map(({dayName, fullDayName}) => {
                                 return (
                                     <FormControlLabel
                                         className={styles.checkboxLabel}
@@ -86,7 +88,7 @@ export default function ProgramConstructor() {
                                         value={dayName}
                                         control={<Checkbox className={styles.dayCheckbox}
                                                            onChange={(e) => handleWeekDayClick(e)}/>}
-                                        label={dayNameRu}
+                                        label={fullDayName}
                                         labelPlacement="top"
                                     />)
                             })}

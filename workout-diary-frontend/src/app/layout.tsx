@@ -4,9 +4,9 @@ import React from "react";
 import {createTheme, ThemeProvider} from "@mui/material";
 import {Provider} from "react-redux";
 import store from "@component/store/store";
-import {Header} from "@component/layout/Header/Header";
-import {Footer} from "@component/layout/Footer/Footer";
 import styles from './styles.module.css'
+import {Header} from "@component/components/Header/Header";
+import {Footer} from "@component/components/Footer/Footer";
 
 // const inter = Inter({subsets: ['latin']})
 

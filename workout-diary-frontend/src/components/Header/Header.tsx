@@ -1,12 +1,14 @@
 'use client'
-import React from "react";
+import React, {DetailedHTMLProps, HTMLAttributes} from "react";
 import styles from './Header.module.css'
-import {HeaderProps} from "@component/layout/Header/Header.props";
 import cn from "classnames";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 
-export const Header = ({className, ...props}: HeaderProps) => {
+interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLDivElement>{
+}
+
+export const Header = ({className, ...props}: Props) => {
 
     const path = usePathname().split('/');
 
@@ -19,7 +21,7 @@ export const Header = ({className, ...props}: HeaderProps) => {
                           className={path[1] === 'program' ? styles.buttonActive : styles.navButton}>PROGRAMS</Link>
                     <Link href={"/meal"}
                           className={path[1] === 'meal' ? styles.buttonActive : styles.navButton}>MEAL PLAN</Link>
-                    <Link href={"/library/exercises"}
+                    <Link href={"/library"}
                           className={path[1] === 'library' ? styles.buttonActive : styles.navButton}>LIBRARY</Link>
                 </nav>
             </div>

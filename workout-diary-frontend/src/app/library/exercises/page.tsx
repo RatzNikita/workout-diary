@@ -1,45 +1,35 @@
 'use client'
-import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import React from "react";
-import {getExercises} from "@component/store/reducers/exercises/exercisesThunks";
-import {Box, CircularProgress, Table, TableBody, TableCell, TableHead} from "@mui/material";
-import styles from "@component/app/library/Library.module.css";
-import {Row} from "@component/components/TableRow/TableRow";
+import $api from "@component/service/api/api";
+import {Exercise} from "@component/types/workoutTypes";
+import styles from './styles.module.css'
 
-export default function ExercisesTable() {
 
-    const exercises = useAppSelector(state => state.exercises.exercises)
-    const dispatch = useAppDispatch();
+export default async function ExercisesTable() {
 
-    React.useEffect(() => {
-        console.log('kefteme')
-        dispatch(getExercises());
-    },[])
+   // const {data: exercises} = await $api.get<Exercise[]>('/exercises')
+    const exercises : Exercise[] = await fetch(`http://localhost:3001/exercises`, { cache: 'force-cache'}).then(res => res.json())
+    console.log(exercises)
 
-    if (exercises) {
-        return (
-            <Box className={styles.container}>
 
-                <Table>
-                    <TableHead>
-                        <TableCell/>
-                        <TableCell>Name</TableCell>
-                        <TableCell>Muscle group</TableCell>
-                    </TableHead>
-                    <TableBody>
-                        {exercises.map((ex) => {
-                            return (
-                                <Row key={ex.name} exercise={ex}/>
-                            )
-                        })}
-                    </TableBody>
-                </Table>
 
-            </Box>
-        )
-    } else {
-        return (
-            <CircularProgress/>
-        )
-    }
+    return (
+        <section className={styles.container}>
+            <h3 className={styles.title}>Exercises list</h3>
+            <ul className={styles.table}>
+                {exercises.map((exercise, index) => {
+                        return (
+                            <li key={exercise.name}>
+                                <p className={styles.exerciseName}>{exercise.name}</p>
+                                <p className={styles.exerciseGroup}>{exercise.group}</p>
+                                <p className={styles.exerciseMuscle}>{exercise.muscle}</p>
+                            </li>
+                        )
+                    }
+                )
+                }
+            </ul>
+        </section>
+    )
 }
+

@@ -7,7 +7,6 @@ import SendIcon from "@mui/icons-material/Send";
 import DoneIcon from "@mui/icons-material/Done";
 import React from "react";
 import {BuiltExercise, Exercise, Workout} from "@component/types/workoutTypes";
-import {daysOfWeek} from "@component/app/program/create/page";
 import {ExercisesList} from "@component/components/ExercisesList/ExercisesList";
 
 interface WorkoutBuilderProps {
@@ -16,6 +15,16 @@ interface WorkoutBuilderProps {
 }
 
 export const WorkoutBuilder = ({weekDays, handleSaveProgram}: WorkoutBuilderProps) => {
+
+    const daysOfWeek = [
+        {dayName: 'mon', fullDayName: 'Monday'},
+        {dayName: 'tue', fullDayName: 'Tuesday'},
+        {dayName: 'wed', fullDayName: 'Wednesday'},
+        {dayName: 'thu', fullDayName: 'Thursday'},
+        {dayName: 'fri', fullDayName: 'Friday'},
+        {dayName: 'sat', fullDayName: 'Saturday'},
+        {dayName: 'sun', fullDayName: 'Sunday'}
+    ]
 
     const [currentDay, setCurrentDay] = React.useState(0)
     const [exercisesOpen, setExercisesOpen] = React.useState(false)
