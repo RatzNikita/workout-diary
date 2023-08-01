@@ -1,35 +1,90 @@
 'use client'
 import React from "react";
-import $api from "@component/service/api/api";
-import {Exercise} from "@component/types/workoutTypes";
 import styles from './styles.module.css'
+import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
+import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
+import {getExercises} from "@component/store/reducers/exercises/exercisesThunks";
+import {CircularProgress} from "@mui/material";
+import {Exercise} from "@component/types/workoutTypes";
+import Link from "next/link";
+import {useRouter} from "next/navigation";
 
 
-export default async function ExercisesTable() {
+export default function ExercisesTable() {
 
-   // const {data: exercises} = await $api.get<Exercise[]>('/exercises')
-    const exercises : Exercise[] = await fetch(`http://localhost:3001/exercises`, { cache: 'force-cache'}).then(res => res.json())
-    console.log(exercises)
+    const exercises: Exercise[] = useAppSelector(state => state.exercises.exercises)
+    const dispatch = useAppDispatch();
+    React.useEffect(() => {
+        dispatch(getExercises())
+    }, [])
+    const router = useRouter();
 
+    const options: MUIDataTableOptions = {
+        filterType: 'checkbox',
+        pagination: false,
+        download: false,
+        print: false,
+        filter: false,
+        viewColumns: false,
+        selectToolbarPlacement: "none",
+        onRowClick: (rowData, rowMeta) => {
+              router.push('/library/exercises/' + rowData[0])
 
+        }
+    };
 
-    return (
-        <section className={styles.container}>
-            <h3 className={styles.title}>Exercises list</h3>
-            <ul className={styles.table}>
-                {exercises.map((exercise, index) => {
-                        return (
-                            <li key={exercise.name}>
-                                <p className={styles.exerciseName}>{exercise.name}</p>
-                                <p className={styles.exerciseGroup}>{exercise.group}</p>
-                                <p className={styles.exerciseMuscle}>{exercise.muscle}</p>
-                            </li>
-                        )
-                    }
-                )
-                }
-            </ul>
-        </section>
-    )
+    const columns = [
+        {
+            name: "_id",
+            label: "ID",
+            options: {
+                display: false,
+            }
+        }
+        ,
+        {
+            name: "name",
+            label: "Name",
+            options: {
+                filter: true,
+                sort: true,
+            }
+        },
+        {
+            name: "muscle",
+            label: "Muscle",
+            options: {
+                filter: true,
+                sort: false,
+                searchable: false,
+            }
+        },
+        {
+            name: "group",
+            label: "Group",
+            options: {
+                filter: true,
+                sort: false,
+                searchable: false,
+            }
+        },
+    ];
+
+    if (!exercises) {
+        return (
+            <CircularProgress/>
+        )
+    } else {
+        return (
+            <section className={styles.container}>
+                <MUIDataTable
+                    title={"Exercises list"}
+                    data={exercises}
+                    columns={columns}
+                    options={options}
+                />
+            </section>
+        )
+    }
 }
 

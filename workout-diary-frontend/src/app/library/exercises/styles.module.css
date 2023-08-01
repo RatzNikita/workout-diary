@@ -1,0 +1,20 @@
+.container {
+	min-width: 100%;
+	min-height: 100%;
+	background-color: #afafaf;
+}
+.title {
+	display: inline-block;
+	margin: 0 auto;
+}
+.table {
+	width: 100%;
+}
+.tableItem {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 18px;
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr;
+	gap: 40px;
+}

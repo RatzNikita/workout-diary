@@ -24,6 +24,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
+    "material-ui-search-bar": "^1.0.0",
     "mui": "^0.0.1",
     "mui-datatables": "^4.3.0",
     "next": "13.4.4",
