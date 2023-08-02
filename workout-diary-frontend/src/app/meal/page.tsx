@@ -6,6 +6,9 @@ import {Button} from "@component/components/UI/Button/Button";
 import {TodayMeal} from "@component/components/Meal/TodayMeal/TodayMeal";
 import {CreateMealPopup} from "@component/components/Meal/CreateMealPopup/CreateMealPopup";
 import {PieChartData, PieChartWithPercents} from "@component/components/PieChartWithPercents/PieChartWithPercents";
+import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
+import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
+import {Food} from "@component/types/mealTypes";
 
 type Inputs = {
     energyValue: number
@@ -59,6 +62,87 @@ export default function  MealPlan() {
         },
     ]
 
+    const originalFoods: Food[] = [
+        {
+            name: 'Boiled chicken breast ',
+            carbs: 0.5,
+            fats: 1.8,
+            proteins: 29.8,
+            energy: 137,
+        },
+        {
+            name: 'Boiled buckwheat ',
+            carbs: 21,
+            fats: 1,
+            proteins: 4,
+            energy: 110,
+
+        },
+        {
+            name: 'Cottage cheese 5%',
+            carbs: 3,
+            fats: 5,
+            proteins: 21,
+            energy: 110,
+
+        },
+    ]
+    const options: MUIDataTableOptions = {
+        filterType: 'checkbox',
+        pagination: false,
+        download: false,
+        print: false,
+        filter: false,
+        viewColumns: false,
+        selectToolbarPlacement: "none",
+    };
+    const columns = [
+        {
+            name: "name",
+            label: "Name",
+            options: {
+                filter: true,
+                sort: true,
+            }
+        },
+        {
+            name: "energy",
+            label: "Energy",
+            options: {
+                filter: true,
+                sort: false,
+                searchable: false,
+            }
+        },
+        {
+            name: "fats",
+            label: "Fats",
+            options: {
+                filter: true,
+                sort: false,
+                searchable: false,
+            }
+        },
+        {
+            name: "carbs",
+            label: "Carbs",
+            options: {
+                filter: false,
+                sort: true,
+                searchable: false,
+            }
+        },
+        {
+            name: "proteins",
+            label: "Proteins",
+            options: {
+                filter: false,
+                sort: true,
+                searchable: false,
+            }
+        },
+    ];
+
     return (
         <div className={styles.container}>
             <div className={styles.mealTablet}>
@@ -85,7 +169,7 @@ export default function  MealPlan() {
                 <PieChartWithPercents data={pieChartData}/>
             </div>
             <TodayMeal onShowPopup={setMealPopupOpened}/>
-            <CreateMealPopup opened={mealPopupOpened}/>
+            <CreateMealPopup isOpen={mealPopupOpened} onClose={() => setMealPopupOpened(false)}/>
         </div>
     )
 }

@@ -1,24 +1,20 @@
-import styles from './CreateMealPopup.module.css'
-import {IconButton} from "@mui/material";
+
 import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
-import CloseIcon from "@mui/icons-material/Close";
-import {useForm} from "react-hook-form";
-import {Food} from "@component/types/mealTypes";
+import {SubmitHandler, useForm} from "react-hook-form";
+import {Food, Meal} from "@component/types/mealTypes";
 import React from "react";
+import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
+import {Exercise} from "@component/types/workoutTypes";
 
 
 interface Props {
-    opened: boolean,
+    isOpen: boolean,
+    onClose: () => void,
 }
 
-type Inputs = {
-    energyValue: number
-    proteins: number
-    fats: number
-    carbs: number
-}
 
-export const CreateMealPopup = ({opened}: Props) => {
+
+export const CreateMealPopup = ({onClose,isOpen}: Props) => {
 
 
     const originalFoods: Food[] = [
@@ -53,7 +49,12 @@ export const CreateMealPopup = ({opened}: Props) => {
         watch,
         setValue,
         formState: {errors},
-    } = useForm<Inputs>()
+    } = useForm<Meal>()
+
+
+    const onSubmit: SubmitHandler<Meal> = (data) => {
+        console.log(data)
+    }
 
     const options: MUIDataTableOptions = {
         filterType: 'checkbox',
@@ -63,6 +64,9 @@ export const CreateMealPopup = ({opened}: Props) => {
         filter: false,
         viewColumns: false,
         selectToolbarPlacement: "none",
+        selectableRowsHeader: false,
+        selectableRowsOnClick: true,
+        selectableRowsHideCheckboxes: true,
     };
 
     const columns = [
@@ -113,19 +117,18 @@ export const CreateMealPopup = ({opened}: Props) => {
     ];
 
     return (
-        <div className={`${styles.popup} ${opened && styles.popupOpened}`}>
-            <div className={styles.popupContainer}>
-                <div className={styles.popupTitle}>Choose food</div>
-                <IconButton className={styles.popupCloseButton}><CloseIcon/></IconButton>
-                <div>
-                    <MUIDataTable
-                        title={"Foods, 100g"}
-                        data={originalFoods}
-                        columns={columns}
-                        options={options}
-                    />
-                </div>
-            </div>
-        </div>
+        <PopupWithForm title={'Create meal'}
+                       name={'createMeal'}
+                       isOpen={isOpen}
+                       onSubmit={handleSubmit(onSubmit)}
+                       onClose={onClose}>
+            <MUIDataTable
+                title={"Foods, 100g"}
+                data={originalFoods}
+                columns={columns}
+                options={options}
+            />
+            <input {...register}></input>
+        </PopupWithForm>
     )
 }

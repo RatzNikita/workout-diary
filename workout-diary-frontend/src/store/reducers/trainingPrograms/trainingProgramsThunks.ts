@@ -7,7 +7,7 @@ export const createProgram = createAsyncThunk(
     async (program : TrainingProgramRequest) => {
         const response = await $api.post('/trainingProgram',program)
         return {
-            trainingProgram: response.data,
+            trainingProgram: response,
         }
     }
 )
@@ -17,7 +17,7 @@ export const getPrograms = createAsyncThunk(
     async () => {
         const response = await $api.get('/trainingProgram')
         return {
-            trainingPrograms: response.data,
+            trainingPrograms: response,
         }
     }
 )
@@ -26,7 +26,6 @@ export const getPrograms = createAsyncThunk(
 export const setWeight = createAsyncThunk(
     '/setWeight',
     async (data: WeightChangeRequest) => {
-        const response = await $api.patch('/trainingProgram/setWeight', data)
-        return response.data
+        return await $api.patch('/trainingProgram/setWeight', data)
     }
 )

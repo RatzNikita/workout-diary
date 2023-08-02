@@ -11,7 +11,7 @@ export interface BuiltExercise {
 }
 
 export interface Exercise {
-    _id: string,
+    _id?: string,
     name: string,
     muscle: string,
     group: string,

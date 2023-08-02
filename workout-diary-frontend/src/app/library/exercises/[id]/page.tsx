@@ -1,16 +1,18 @@
 import {Exercise} from '@component/types/workoutTypes'
 import styles from './styles.module.css'
+import $api from "@component/service/api/api";
 
 export async function generateStaticParams() {
-    const exercises: Exercise[] = await fetch('http://localhost:3001/exercises').then(res => res.json());
+   // const exercises: Exercise[] = await fetch('http://localhost:3001/exercises').then(res => res.json());
+    const exercises: Exercise[] = await $api.get('/exercises')
     return exercises.map(ex => {
         return {id: ex._id.toString()}
     })
 }
 
 async function getExercises(id: string) {
-    console.log('ID==>', id)
-    const exercise: Exercise = await fetch('http://localhost:3001/exercises/' + id).then(res => res.json())
+   // const exercise: Exercise = await fetch('http://localhost:3001/exercises/' + id).then(res => res.json())
+    const exercise: Exercise = await $api.get('/exercises/'+ id)
     return exercise;
 }
 

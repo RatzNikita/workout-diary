@@ -4,21 +4,26 @@ import styles from './styles.module.css'
 import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {getExercises} from "@component/store/reducers/exercises/exercisesThunks";
-import {CircularProgress} from "@mui/material";
+import {Button, CircularProgress} from "@mui/material";
 import {Exercise} from "@component/types/workoutTypes";
-import Link from "next/link";
 import {useRouter} from "next/navigation";
+import AddIcon from "@mui/icons-material/Add";
+import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
+import {SubmitHandler, useForm} from "react-hook-form";
+
+
 
 
 export default function ExercisesTable() {
 
     const exercises: Exercise[] = useAppSelector(state => state.exercises.exercises)
+    const [addExercisePopupOpened,setAddExercisePopupOpened] = React.useState(false);
     const dispatch = useAppDispatch();
     React.useEffect(() => {
         dispatch(getExercises())
     }, [])
-    const router = useRouter();
 
+    const router = useRouter();
     const options: MUIDataTableOptions = {
         filterType: 'checkbox',
         pagination: false,
@@ -28,11 +33,10 @@ export default function ExercisesTable() {
         viewColumns: false,
         selectToolbarPlacement: "none",
         onRowClick: (rowData, rowMeta) => {
-              router.push('/library/exercises/' + rowData[0])
+            router.push('/library/exercises/' + rowData[0])
 
         }
     };
-
     const columns = [
         {
             name: "_id",
@@ -70,6 +74,26 @@ export default function ExercisesTable() {
         },
     ];
 
+    const {
+        register,
+        handleSubmit,
+        watch,
+        setValue,
+        resetField,
+        formState: {errors},
+    } = useForm<Exercise>()
+
+    const onAddExercise: SubmitHandler<Exercise> = (data)  => {
+        console.log(data)
+        resetField("name")
+        resetField("muscle")
+        resetField("group")
+    }
+
+    const closePopup = () => {
+        setAddExercisePopupOpened(false)
+    }
+
     if (!exercises) {
         return (
             <CircularProgress/>
@@ -77,12 +101,18 @@ export default function ExercisesTable() {
     } else {
         return (
             <section className={styles.container}>
+                <Button variant='contained' endIcon={<AddIcon/>} onClick={() => setAddExercisePopupOpened(true)}>Add exercise</Button>
                 <MUIDataTable
                     title={"Exercises list"}
                     data={exercises}
                     columns={columns}
                     options={options}
                 />
+                <PopupWithForm title={'Add exercise'} name={'addExercise'} isOpen={addExercisePopupOpened} onSubmit={handleSubmit(onAddExercise)} onClose={closePopup}>
+                    <input placeholder='Name' className={styles.popupInput} {...register('name')}></input>
+                    <input placeholder='Group' className={styles.popupInput} {...register('group')}></input>
+                    <input placeholder='Muscle' className={styles.popupInput} {...register('muscle')}></input>
+                </PopupWithForm>
             </section>
         )
     }

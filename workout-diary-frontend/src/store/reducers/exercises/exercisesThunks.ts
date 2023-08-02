@@ -7,7 +7,7 @@ export const getExercises = createAsyncThunk(
     async () => {
         const response = await $api.get('/exercises')
         return {
-            exercises: response.data,
+            exercises: response,
         }
     }
 )
