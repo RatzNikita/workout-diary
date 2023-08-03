@@ -1,10 +1,11 @@
-
 import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
-import {SubmitHandler, useForm} from "react-hook-form";
-import {Food, Meal} from "@component/types/mealTypes";
+import {Food, FoodGroup} from "@component/types/mealTypes";
 import React from "react";
 import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
-import {Exercise} from "@component/types/workoutTypes";
+import styles from './CreateMealPopup.module.css'
+import AddIcon from "@mui/icons-material/Add";
+import {IconButton} from "@mui/material";
+import Image from "next/image";
 
 
 interface Props {
@@ -13,13 +14,13 @@ interface Props {
 }
 
 
-
-export const CreateMealPopup = ({onClose,isOpen}: Props) => {
+export const CreateMealPopup = ({onClose, isOpen}: Props) => {
 
 
     const originalFoods: Food[] = [
         {
             name: 'Boiled chicken breast ',
+            group: FoodGroup.meat,
             carbs: 0.5,
             fats: 1.8,
             proteins: 29.8,
@@ -27,6 +28,7 @@ export const CreateMealPopup = ({onClose,isOpen}: Props) => {
         },
         {
             name: 'Boiled buckwheat ',
+            group: FoodGroup.garnish,
             carbs: 21,
             fats: 1,
             proteins: 4,
@@ -35,25 +37,24 @@ export const CreateMealPopup = ({onClose,isOpen}: Props) => {
         },
         {
             name: 'Cottage cheese 5%',
+            group: FoodGroup.milk,
             carbs: 3,
             fats: 5,
             proteins: 21,
             energy: 110,
-
         },
     ]
+    const [selectedFoods, setSelectedFoods] = React.useState<Food[]>()
 
-    const {
-        register,
-        handleSubmit,
-        watch,
-        setValue,
-        formState: {errors},
-    } = useForm<Meal>()
-
-
-    const onSubmit: SubmitHandler<Meal> = (data) => {
-        console.log(data)
+    const onSubmit = () => {
+        console.log(selectedFoods)
+    }
+    const onSelectChange = (currentRowsSelected: any[], allRowsSelected: any[]) => {
+        console.log(allRowsSelected)
+        const foods: Food[] = allRowsSelected.map((row) => {
+            return originalFoods[row.index]
+        })
+        setSelectedFoods(foods)
     }
 
     const options: MUIDataTableOptions = {
@@ -67,7 +68,9 @@ export const CreateMealPopup = ({onClose,isOpen}: Props) => {
         selectableRowsHeader: false,
         selectableRowsOnClick: true,
         selectableRowsHideCheckboxes: true,
+        onRowSelectionChange: onSelectChange,
     };
+
 
     const columns = [
         {
@@ -120,15 +123,102 @@ export const CreateMealPopup = ({onClose,isOpen}: Props) => {
         <PopupWithForm title={'Create meal'}
                        name={'createMeal'}
                        isOpen={isOpen}
-                       onSubmit={handleSubmit(onSubmit)}
+                       onSubmit={onSubmit}
                        onClose={onClose}>
-            <MUIDataTable
-                title={"Foods, 100g"}
-                data={originalFoods}
-                columns={columns}
-                options={options}
-            />
-            <input {...register}></input>
+            <div className={styles.container}>
+                <div className={styles.items}>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/garnish.jpg"
+                               alt='Garnish image'
+                               fill
+                               />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/meat.png"
+                               alt='Meat image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/vegetables.png"
+                               alt='Vegetables image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/fruits.png"
+                               alt='Fruits image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/coffee.png"
+                               alt='Coffee image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/sportmeal.png"
+                               alt='Sportmeal image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/sauce.png"
+                               alt='Sauces image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/chocolate.png"
+                               alt='Chocolate image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/milk.png"
+                               alt='Milk image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/bakery.png"
+                               alt='Bakery image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                    <IconButton className={styles.imageContainer}>
+                        <Image className={styles.image} src="/alcohol.png"
+                               alt='Alcohol image'
+                               fill
+                        />
+                        <AddIcon className={styles.addIcon}/>
+                    </IconButton>
+                </div>
+                <MUIDataTable
+                    title={"Foods, 100g"}
+                    data={originalFoods}
+                    columns={columns}
+                    options={options}
+                />
+                <ul>
+                    {selectedFoods?.map(food => {
+                        return (
+                            <li key={food.name}>{food.name}</li>
+                        )
+                    })}
+                </ul>
+            </div>
         </PopupWithForm>
     )
 }

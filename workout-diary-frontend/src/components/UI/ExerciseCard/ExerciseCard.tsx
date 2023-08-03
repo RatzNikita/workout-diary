@@ -3,7 +3,7 @@ import styles from './ExerciseCard.module.scss'
 import React from "react";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {ArrowLeft, QueryStats} from "@mui/icons-material";
-import {BuiltExercise, Workout} from "@component/types/workoutTypes";
+import {BuiltExercise, WeightChangeRequest, Workout} from "@component/types/workoutTypes";
 import {setWeight} from "@component/store/reducers/trainingPrograms/trainingProgramsThunks";
 import {CardRow} from "@component/components/UI/ExerciseCard/CardRow/CardRow";
 
@@ -26,7 +26,7 @@ export const ExerciseCard = ({statsShown = false, workout, handleExpandStats}: E
                 workoutDay: workout.day,
                 exerciseID: ex.exercise._id,
                 weight: weight
-            }))
+            } as WeightChangeRequest))
         }
     }
 

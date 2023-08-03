@@ -18,6 +18,7 @@
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
     "@types/react-redux": "^7.1.25",
+    "@types/styled-components": "^5.1.26",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
@@ -37,11 +38,13 @@
     "recharts": "^2.7.2",
     "redux-persist": "^6.0.0",
     "sass": "^1.63.4",
+    "styled-components": "^6.0.6",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
     "validator": "^13.9.0"
   },
   "devDependencies": {
-    "@types/mui-datatables": "^4.3.5"
+    "@types/mui-datatables": "^4.3.5",
+    "babel-plugin-styled-components": "^2.1.4"
   }
 }

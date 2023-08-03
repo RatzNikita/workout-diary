@@ -11,19 +11,21 @@ interface Props {
     onClose: () => void,
 }
 
-export const PopupWithForm = ({title, name, children, isOpen, onSubmit, onClose} : Props) => {
+export const PopupWithForm = ({title, name, children, isOpen, onSubmit, onClose}: Props) => {
 
 
-    return (<div className={cn(styles.popup, { [styles.popupOpened] : isOpen})}>
-        <div className={styles.container}>
-            <h2 className={styles.title}>{title}</h2>
-            <form className={styles.form} id="card-form" name={name} onSubmit={onSubmit}>
-                {children}
-                <button className={styles.submitBtn} type="submit">{'Save'}</button>
-            </form>
-            <button className={styles.closeBtn} type="button" onClick={onClose}></button>
+    return (
+        <div className={cn(styles.popup, {[styles.popupOpened]: isOpen})}>
+            <div className={styles.container}>
+                <h2 className={styles.title}>{title}</h2>
+                <form className={styles.form} id="card-form" name={name} onSubmit={onSubmit}>
+                    {children}
+                    <button className={styles.submitBtn} type="submit">{'Save'}</button>
+                </form>
+                <button className={styles.closeBtn} type="button" onClick={onClose}></button>
+            </div>
         </div>
-    </div>)
+    )
 }
 
 export default PopupWithForm

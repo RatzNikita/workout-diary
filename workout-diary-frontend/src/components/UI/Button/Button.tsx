@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './Button.module.css'
+import styled from "styled-components";
 
 
 interface Props {
@@ -9,6 +10,16 @@ interface Props {
     onClick?: ( e : any) => void
     type?: "button" | "submit" | "reset" | undefined
 }
+
+const StyledButton = styled.button<Props>`
+  background-color: inherit;
+  max-height: 40px;
+  font-weight: 600;
+  font-size: 1vh;
+  padding: 5px;
+  margin: 10px;
+  transition: scale .2s linear;
+`
 
 export const Button = ({type = 'button',active,size,onClick,children}: Props) => {
 

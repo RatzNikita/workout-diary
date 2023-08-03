@@ -6,7 +6,7 @@ export async function generateStaticParams() {
    // const exercises: Exercise[] = await fetch('http://localhost:3001/exercises').then(res => res.json());
     const exercises: Exercise[] = await $api.get('/exercises')
     return exercises.map(ex => {
-        return {id: ex._id.toString()}
+        return {id: ex._id}
     })
 }
 
