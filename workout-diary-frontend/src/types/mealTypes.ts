@@ -1,4 +1,3 @@
-
 export interface Food {
     name: string,
     group: FoodGroup,
@@ -13,14 +12,14 @@ export interface Meal {
 }
 
 export enum FoodGroup {
-    garnish,
-    meat,
-    vegetable,
-    fruit,
-    dessert,
-    sauce,
-    drink,
-    sportmeal,
-    milk,
-    bakery
+    garnish = 'garnish',
+    meat = "meat",
+    vegetable = "vegetable",
+    fruit = "fruit",
+    dessert = "dessert",
+    sauce = "sauce",
+    drink = "drink",
+    sportmeal = "sportmeal",
+    milk = "milk",
+    bakery = "bakery"
 }

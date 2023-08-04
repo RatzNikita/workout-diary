@@ -6,6 +6,7 @@ import styles from './CreateMealPopup.module.css'
 import AddIcon from "@mui/icons-material/Add";
 import {IconButton} from "@mui/material";
 import Image from "next/image";
+import MealGroupImage from "@component/styles/MealGroupImage";
 
 
 interface Props {
@@ -44,6 +45,7 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
             energy: 110,
         },
     ]
+    const [foods,setFoods] = React.useState(originalFoods);
     const [selectedFoods, setSelectedFoods] = React.useState<Food[]>()
 
     const onSubmit = () => {
@@ -70,8 +72,6 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
         selectableRowsHideCheckboxes: true,
         onRowSelectionChange: onSelectChange,
     };
-
-
     const columns = [
         {
             name: "name",
@@ -119,6 +119,7 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
         },
     ];
 
+
     return (
         <PopupWithForm title={'Create meal'}
                        name={'createMeal'}
@@ -127,87 +128,17 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
                        onClose={onClose}>
             <div className={styles.container}>
                 <div className={styles.items}>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/garnish.jpg"
-                               alt='Garnish image'
-                               fill
-                               />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/meat.png"
-                               alt='Meat image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/vegetables.png"
-                               alt='Vegetables image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/fruits.png"
-                               alt='Fruits image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/coffee.png"
-                               alt='Coffee image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/sportmeal.png"
-                               alt='Sportmeal image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/sauce.png"
-                               alt='Sauces image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/chocolate.png"
-                               alt='Chocolate image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/milk.png"
-                               alt='Milk image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/bakery.png"
-                               alt='Bakery image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
-                    <IconButton className={styles.imageContainer}>
-                        <Image className={styles.image} src="/alcohol.png"
-                               alt='Alcohol image'
-                               fill
-                        />
-                        <AddIcon className={styles.addIcon}/>
-                    </IconButton>
+                    {Object.values(FoodGroup).map(group => {
+                        return (
+                            <IconButton key={group} className={styles.imageContainer}>
+                                <MealGroupImage name={group}/>
+                            </IconButton>
+                        )
+                    })}
                 </div>
                 <MUIDataTable
                     title={"Foods, 100g"}
-                    data={originalFoods}
+                    data={foods}
                     columns={columns}
                     options={options}
                 />

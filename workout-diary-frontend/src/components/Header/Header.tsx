@@ -6,7 +6,7 @@ import Link from "next/link";
 import {usePathname} from "next/navigation";
 import Button from "@component/styles/Button";
 
-interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLDivElement> {
+interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement> {
 }
 
 export const Header = ({className, ...props}: Props) => {
