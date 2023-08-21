@@ -1,8 +1,10 @@
 .container {
 	display: grid;
-	grid-template-columns: repeat(2, max-content);
+	grid-template-columns: 3fr 2fr;
 	gap: 40px;
 	padding: 20px;
+	min-width: 1000px;
+	min-height: 400px;
 }
 
 .imageContainer {
@@ -39,6 +41,36 @@
 
 .items {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4,75px);
 	gap: 15px;
+}
+.listItem {
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.listItemName {
+	background: #f5f5f5;
+	padding: 5px 10px;
+	border-radius: 12px;
+	max-width: max-content;
+}
+.foodSelector {
+	min-width: 500px;
+}
+
+.input {
+	border: none;
+	max-width: 50px;
+	text-underline: none;
+	text-align: end;
+}
+
+.chosenFoodsTitle {
+	padding: 0 0 20px 0;
+	font-size: 25px;
+	letter-spacing: 2px;
+	text-align: center;
 }

@@ -12,8 +12,6 @@ import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
 import {SubmitHandler, useForm} from "react-hook-form";
 
 
-
-
 export default function ExercisesTable() {
 
     const exercises: Exercise[] = useAppSelector(state => state.exercises.exercises)

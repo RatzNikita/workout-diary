@@ -1,14 +1,8 @@
 import Image, {ImageProps} from "next/image";
 import styled from "styled-components";
-import {IconButton} from "@mui/material";
-import {IconButtonProps, IconButtonTypeMap} from "@mui/material/IconButton/IconButton";
 import AddIcon from "@mui/icons-material/Add";
-import {DetailedHTMLProps, HTMLAttributes} from "react";
-import {ExtendButtonBase} from "@mui/material/ButtonBase";
 
-interface GroupImage extends ImageProps {
 
-}
 
 const ButtonIcon = styled(AddIcon)`
   position: absolute;

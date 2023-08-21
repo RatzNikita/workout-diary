@@ -1,22 +1,21 @@
 import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
-import {Food, FoodGroup} from "@component/types/mealTypes";
+import {Food, FoodGroup, FoodServing} from "@component/types/mealTypes";
 import React from "react";
 import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
 import styles from './CreateMealPopup.module.css'
-import AddIcon from "@mui/icons-material/Add";
-import {IconButton} from "@mui/material";
-import Image from "next/image";
+import {Button, IconButton, Input, List, ListItem, ListItemText} from "@mui/material";
 import MealGroupImage from "@component/styles/MealGroupImage";
-
+import {ArrowLeft} from "@mui/icons-material";
+import {useForm} from "react-hook-form";
+import {useAppDispatch} from "@component/hooks/hooks";
+import {addMeal, addServing, setCurrentMeal} from "@component/store/reducers/meal/mealSlice";
 
 interface Props {
     isOpen: boolean,
     onClose: () => void,
 }
 
-
 export const CreateMealPopup = ({onClose, isOpen}: Props) => {
-
 
     const originalFoods: Food[] = [
         {
@@ -45,19 +44,40 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
             energy: 110,
         },
     ]
-    const [foods,setFoods] = React.useState(originalFoods);
-    const [selectedFoods, setSelectedFoods] = React.useState<Food[]>()
+    const [foods, setFoods] = React.useState(originalFoods);
+    const [groupSelected, setGroupSelected] = React.useState(false);
+    const [chosenFood, setChosenFood] = React.useState<Food[]>([]);
+    const [nutrition, setNutrition] = React.useState({
+        proteins: 0,
+        fats: 0,
+        carbs: 0,
+        energy: 0,
+    })
+
+    const dispatch  = useAppDispatch();
 
     const onSubmit = () => {
-        console.log(selectedFoods)
+        const values = getValues()
+        const foods: FoodServing[] = []
+        for (const food in values) {
+            const newFood = originalFoods.find(orig => orig.name === food)
+            if (newFood !== undefined) {
+                foods.push({
+                    food: newFood,
+                    weight: values[food]
+                })
+            }
+        }
+        dispatch(addMeal(foods))
     }
-    const onSelectChange = (currentRowsSelected: any[], allRowsSelected: any[]) => {
-        console.log(allRowsSelected)
-        const foods: Food[] = allRowsSelected.map((row) => {
-            return originalFoods[row.index]
-        })
-        setSelectedFoods(foods)
+
+    const onRowClick = (data, meta) => {
+        if (!chosenFood.find(food => food.name === data[0])) {
+            setChosenFood(prevState => [...prevState, originalFoods.find(food => food.name === data[0])])
+        }
     }
+
+    const {register, handleSubmit, watch, formState, getValues} = useForm();
 
     const options: MUIDataTableOptions = {
         filterType: 'checkbox',
@@ -68,9 +88,9 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
         viewColumns: false,
         selectToolbarPlacement: "none",
         selectableRowsHeader: false,
-        selectableRowsOnClick: true,
+        selectableRowsOnClick: false,
         selectableRowsHideCheckboxes: true,
-        onRowSelectionChange: onSelectChange,
+        onRowClick: onRowClick,
     };
     const columns = [
         {
@@ -119,6 +139,15 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
         },
     ];
 
+    const choseGroup = (group?: FoodGroup) => {
+        if (!groupSelected && group) {
+            setFoods(prevState => prevState.filter(food => food.group === group));
+            setGroupSelected(true)
+        } else {
+            setGroupSelected(false)
+            setFoods(originalFoods)
+        }
+    }
 
     return (
         <PopupWithForm title={'Create meal'}
@@ -127,28 +156,45 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
                        onSubmit={onSubmit}
                        onClose={onClose}>
             <div className={styles.container}>
-                <div className={styles.items}>
-                    {Object.values(FoodGroup).map(group => {
-                        return (
-                            <IconButton key={group} className={styles.imageContainer}>
-                                <MealGroupImage name={group}/>
-                            </IconButton>
-                        )
-                    })}
+                <div className={styles.foodSelector}>
+                    {groupSelected
+                        ? <div>
+                            <Button startIcon={<ArrowLeft/>} onClick={() => choseGroup()}>Back</Button>
+                            <MUIDataTable
+                                title={"Foods, 100g"}
+                                data={foods}
+                                columns={columns}
+                                options={options}
+                            />
+                        </div>
+                        :
+                        <div className={styles.items}>
+                            {Object.values(FoodGroup).map(group => {
+                                return (
+                                    <IconButton key={group} className={styles.imageContainer}
+                                                onClick={() => choseGroup(group)}>
+                                        <MealGroupImage name={group}/>
+                                    </IconButton>
+                                )
+                            })}
+                        </div>
+                    }
                 </div>
-                <MUIDataTable
-                    title={"Foods, 100g"}
-                    data={foods}
-                    columns={columns}
-                    options={options}
-                />
-                <ul>
-                    {selectedFoods?.map(food => {
-                        return (
-                            <li key={food.name}>{food.name}</li>
-                        )
-                    })}
-                </ul>
+                <div className={styles.nutrition}>
+                    <h5 className={styles.chosenFoodsTitle}>Chosen foods, g</h5>
+                    <List>
+                        {chosenFood?.map((food) => {
+                            return (
+                                <ListItem className={styles.listItem} key={food.name}>
+                                    <ListItemText className={styles.listItemName}>{food.name}</ListItemText>
+                                    <Input inputMode="numeric" className={styles.input} {...register(food.name)}
+                                           defaultValue={0}></Input>
+                                </ListItem>
+                            )
+                        })}
+                    </List>
+                </div>
+
             </div>
         </PopupWithForm>
     )

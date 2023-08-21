@@ -1,5 +1,3 @@
-import {TrainingProgramRequest} from "@component/types/workoutTypes";
-
 interface Api {
     baseUrl: string,
     headers: HeadersInit

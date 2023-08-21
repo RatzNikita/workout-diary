@@ -7,8 +7,14 @@ export interface Food {
     energy: number,
 }
 
+export interface FoodServing {
+    food: Food,
+    weight: number,
+}
+
 export interface Meal {
-    foods: Food[],
+    foods: FoodServing[],
+    time: string,
 }
 
 export enum FoodGroup {

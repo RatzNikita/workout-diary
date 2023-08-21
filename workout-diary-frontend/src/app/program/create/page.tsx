@@ -10,7 +10,6 @@ import {WorkoutBuilder} from "@component/components/WorkoutBuilder/WorkoutBuilde
 import {useRouter} from "next/navigation";
 
 
-
 enum BuildSteps {
     programName,
     weekDays,

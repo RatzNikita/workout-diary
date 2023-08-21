@@ -5,9 +5,6 @@ import styles from "@component/app/meal/Meal.module.css";
 import {TodayMeal} from "@component/components/Meal/TodayMeal/TodayMeal";
 import {CreateMealPopup} from "@component/components/Meal/CreateMealPopup/CreateMealPopup";
 import {PieChartData, PieChartWithPercents} from "@component/components/PieChartWithPercents/PieChartWithPercents";
-import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
-import MUIDataTable, {MUIDataTableOptions} from "mui-datatables";
-import {Food} from "@component/types/mealTypes";
 import Button from "@component/styles/Button";
 
 type Inputs = {
