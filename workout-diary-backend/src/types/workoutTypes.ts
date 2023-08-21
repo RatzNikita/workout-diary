@@ -26,3 +26,4 @@ export interface TrainingProgramType {
     name: string,
     workouts: WorkoutType[]
 }
+
