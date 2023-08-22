@@ -1,8 +1,9 @@
 import {Router} from 'express'
-import {addMeal} from "../controllers/meal";
+import {createMeal} from "../controllers/meal";
+
 const router = Router();
 
-
-router.post('/add',addMeal)
+// @ts-ignore
+router.post('/add', createMeal)
 
 export default Router;
