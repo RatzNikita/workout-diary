@@ -3,6 +3,9 @@ import mainSlice from "@component/store/reducers/mainSlice";
 import exercisesSlice from "@component/store/reducers/exercises/exercisesSlice";
 import trainingProgramsSlice from "@component/store/reducers/trainingPrograms/trainingProgramsSlice";
 import mealSlice from "@component/store/reducers/meal/mealSlice";
+import {persistReducer, persistStore} from "redux-persist";
+import storage from 'redux-persist/lib/storage'
+
 
 const reducer = combineReducers({
     main: mainSlice,
@@ -11,13 +14,21 @@ const reducer = combineReducers({
     meal: mealSlice,
 })
 
-const store = configureStore({
-    reducer,
+
+const persistConfig = {
+    key: 'root',
+    storage,
+
+}
+
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+export const store = configureStore({
+    reducer: persistedReducer,
     devTools: process.env.NODE_ENV !== 'production',
 })
 
-export default store;
+export const persistor = persistStore(store)
 
 export type RootState = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch

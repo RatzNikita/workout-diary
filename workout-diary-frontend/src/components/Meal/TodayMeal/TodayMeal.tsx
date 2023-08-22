@@ -28,7 +28,7 @@ export const TodayMeal = ({onShowPopup}: Props) => {
                         <ListItem key={meal.time}>
                             {meal.foods.map((food) => {
                                 return (
-                                    <ListItemText key={food.}
+                                    <ListItemText key={food.food.name}
                                                   primary={food.weight}>{food.food.name}</ListItemText>
                                 )
                             })}

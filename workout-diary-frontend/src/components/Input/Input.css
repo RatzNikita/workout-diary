@@ -1,0 +1,38 @@
+
+.auth-form__input {
+    margin: 0;
+    padding: 15px;
+    width: 100%;
+    border-radius: 8px;
+    background: #f3f3f3;
+    outline: none;
+    box-shadow: #424242 2px 2px 5px;
+    text-underline: none;
+    border: none;
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: normal;
+    box-sizing: border-box;
+}
+
+.auth-form__input_color_red {
+    color: #FF4062;
+}
+
+.auth-form__input-name {
+    display: block;
+    padding: 20px 0 10px;
+    color: #383838;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (min-width: 768px) {
+    .auth-form__input{
+        font-size: 13px;
+    }
+}
+
+

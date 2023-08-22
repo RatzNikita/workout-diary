@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/mui-datatables": "^4.3.5",
+    "@types/redux-persist": "^4.3.1",
     "babel-plugin-styled-components": "^2.1.4"
   }
 }

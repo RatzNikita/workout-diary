@@ -8,7 +8,7 @@ import MealGroupImage from "@component/styles/MealGroupImage";
 import {ArrowLeft} from "@mui/icons-material";
 import {useForm} from "react-hook-form";
 import {useAppDispatch} from "@component/hooks/hooks";
-import {addMeal, addServing, setCurrentMeal} from "@component/store/reducers/meal/mealSlice";
+import {addMeal} from "@component/store/reducers/meal/mealSlice";
 
 interface Props {
     isOpen: boolean,
@@ -71,8 +71,10 @@ export const CreateMealPopup = ({onClose, isOpen}: Props) => {
         dispatch(addMeal(foods))
     }
 
+    // @ts-ignore
     const onRowClick = (data, meta) => {
         if (!chosenFood.find(food => food.name === data[0])) {
+            // @ts-ignore
             setChosenFood(prevState => [...prevState, originalFoods.find(food => food.name === data[0])])
         }
     }
