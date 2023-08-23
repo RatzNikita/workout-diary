@@ -13,8 +13,6 @@ const userSchema = new mongoose.Schema({
         },
         password: {
             type: String,
-            minLength: 8,
-            maxLength: 50,
             required: true,
             select: false,
         },
@@ -35,7 +33,8 @@ const userSchema = new mongoose.Schema({
                                 return user;
                             });
                     });
-            }}
+            }},
+        versionKey: false
     })
 
 export default mongoose.model('user', userSchema)

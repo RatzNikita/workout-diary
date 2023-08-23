@@ -2,7 +2,8 @@ import exerciseRouter from './routes/exercise'
 import trainingProgramRouter from './routes/trainingProgram'
 import foodRouter from './routes/food'
 import mealRouter from './routes/meal'
-import {Request, Response} from "express";
+import userRouter from './routes/user'
+import {NextFunction, Request, Response} from "express";
 import bodyParser from "body-parser";
 import express from 'express'
 import mongoose from "mongoose";
@@ -28,9 +29,14 @@ app.use('/exercises', exerciseRouter)
 app.use('/trainingProgram', trainingProgramRouter)
 app.use('/food', foodRouter)
 app.use('/meal', mealRouter)
+app.use('/user', userRouter)
 
 app.use('/', (req: Request, res: Response) => {
     res.status(404).send({message: 'Страница с указанным адресом не найдена'});
+});
+
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    res.status(400).send({message: err.message});
 });
 
 app.listen(3001, () => {

@@ -6,4 +6,4 @@ const router = Router();
 router.post('/add', addFood)
 router.delete('/{id}', removeFood)
 
-export default Router;
+export default router;

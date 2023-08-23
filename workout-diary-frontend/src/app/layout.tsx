@@ -8,6 +8,7 @@ import styles from './styles.module.css'
 import {Header} from "@component/components/Header/Header";
 import {Footer} from "@component/components/Footer/Footer";
 import {PersistGate} from "redux-persist/integration/react";
+import {useAppSelector} from "@component/hooks/hooks";
 
 // const inter = Inter({subsets: ['latin']})
 
@@ -32,6 +33,7 @@ export default function RootLayout({
             },
         },
     });
+
 
 
     return (

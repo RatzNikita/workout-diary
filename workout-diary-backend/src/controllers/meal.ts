@@ -1,10 +1,11 @@
 import {NextFunction, Response} from "express";
 import Meal from "../models/meal";
-import {AuthRequest} from "../types/userTypes";
 import createHttpError from "http-errors";
+import {AuthRequest} from "../types/userTypes";
 
 
-export async function createMeal(req: AuthRequest, res: Response, next: NextFunction) {
+export async function createMeal(request: Request, res: Response, next: NextFunction) {
+    const req = request as AuthRequest
     await Meal.create({...req.body,owner: req.user._id})
         .then((user) => {
             res.status(201).send(user)

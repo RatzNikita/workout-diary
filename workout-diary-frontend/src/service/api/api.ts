@@ -32,6 +32,14 @@ class Api {
             body: JSON.stringify(body)
         }).then(res => res.json())
     }
+
+    setToken(token: string) {
+        this.headers = {
+            'Content-Type': "application/json",
+            'Access-Control-Allow-Origin': '*',
+            'Authorization': 'Bearer ' + token
+        }
+    }
 }
 
 const $api = new Api('http://localhost:3001',

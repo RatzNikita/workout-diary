@@ -3,7 +3,8 @@ import {createMeal} from "../controllers/meal";
 
 const router = Router();
 
+
 // @ts-ignore
 router.post('/add', createMeal)
 
-export default Router;
+export default router;
