@@ -1,4 +1,4 @@
-import Image, {ImageProps} from "next/image";
+import Image from "next/image";
 import styled from "styled-components";
 import AddIcon from "@mui/icons-material/Add";
 

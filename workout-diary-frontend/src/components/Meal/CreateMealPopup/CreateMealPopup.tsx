@@ -4,7 +4,7 @@ import React from "react";
 import PopupWithForm from "@component/components/PopupWithForm/PopupWithForm";
 import styles from './CreateMealPopup.module.css'
 import {Button, IconButton, Input, List, ListItem, ListItemText} from "@mui/material";
-import MealGroupImage from "@component/styles/MealGroupImage";
+import MealGroupImage from "@component/components/MealGroupImage/MealGroupImage";
 import {ArrowLeft} from "@mui/icons-material";
 import {useForm} from "react-hook-form";
 import {useAppDispatch} from "@component/hooks/hooks";

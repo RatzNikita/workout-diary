@@ -5,7 +5,7 @@ import styles from "@component/app/meal/Meal.module.css";
 import {TodayMeal} from "@component/components/Meal/TodayMeal/TodayMeal";
 import {CreateMealPopup} from "@component/components/Meal/CreateMealPopup/CreateMealPopup";
 import {PieChartData, PieChartWithPercents} from "@component/components/PieChartWithPercents/PieChartWithPercents";
-import Button from "@component/styles/Button";
+import Button from "@component/components/Button/Button";
 
 type Inputs = {
     energyValue: number
@@ -64,19 +64,19 @@ export default function  MealPlan() {
         <div className={styles.container}>
             <div className={styles.mealTablet}>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.mealForm} autoComplete="off">
-                    <h5>Nutrients, g</h5>
+                    <h5 className={styles.mealTabletTitle}>MEAL PLAN</h5>
                     <div className={styles.formField}>
-                        <p>Proteins:</p>
+                        <p>PROTEINS:</p>
                         <input type="number" {...register('proteins')}  className={styles.formInput}></input>
                         <div className={`${styles.colorCircle} ${styles.greenCircle}`}></div>
                     </div>
                     <div className={styles.formField}>
-                        <p>Carbs:</p>
+                        <p>CARBS:</p>
                         <input type="number" {...register('carbs')}  className={styles.formInput}></input>
                         <div className={`${styles.colorCircle} ${styles.orangeCircle}`}></div>
                     </div>
                     <div className={styles.formField}>
-                        <p>Fats:</p>
+                        <p>FATS:</p>
                         <input type="number" {...register('fats')}  className={styles.formInput}></input>
                         <div className={`${styles.colorCircle} ${styles.blueCircle}`}></div>
                     </div>

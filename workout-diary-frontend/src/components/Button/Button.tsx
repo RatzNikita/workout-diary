@@ -16,7 +16,7 @@ interface Props {
   line-height: 18px;
   padding: 5px;
   margin: 10px;
-  transition: scale .2s linear;
+  transition: scale .1s linear;
 
   ${props => {
     switch (props.size) {
@@ -40,12 +40,12 @@ interface Props {
     if (props.active) {
       return css`
         border-bottom: #424242 3px solid;
-        scale: 1.2;
+        scale: 1.1;
       `
     }
   }}
   &:hover {
-    scale: 1.2;
+    scale: 1.1;
   }
 `
 

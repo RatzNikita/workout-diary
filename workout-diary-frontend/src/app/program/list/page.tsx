@@ -5,7 +5,7 @@ import {getPrograms} from "@component/store/reducers/trainingPrograms/trainingPr
 import {TrainingProgram} from "@component/types/workoutTypes";
 import {setCurrentProgram} from "@component/store/reducers/trainingPrograms/trainingProgramsSlice";
 import styles from "@component/app/program/list/style.module.css";
-import Button from "@component/styles/Button";
+import Button from "@component/components/Button/Button";
 import {Divider, IconButton, Typography} from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 

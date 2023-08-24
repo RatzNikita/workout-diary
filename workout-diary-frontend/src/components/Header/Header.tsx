@@ -4,7 +4,7 @@ import styles from './Header.module.css'
 import cn from "classnames";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import Button from "@component/styles/Button";
+import Button from "@component/components/Button/Button";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {getUserInfo} from "@component/store/reducers/auth/authThunks";
 import $api from "@component/service/api/api";

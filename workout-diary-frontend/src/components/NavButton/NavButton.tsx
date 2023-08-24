@@ -1,7 +1,7 @@
 import React from "react";
 import {useAppDispatch, useAppSelector} from "@component/hooks/hooks";
 import {setActiveMenu} from "@component/store/reducers/mainSlice";
-import Button from "@component/styles/Button";
+import Button from "@component/components/Button/Button";
 
 
 interface NavButtonProps {
