@@ -38,7 +38,6 @@ export async function getUserInfo(request: Request, res: Response, next: NextFun
     User.findById(req.user._id)
         .then((user) => {
             if (user) {
-                console.log(user)
                 res.send(user);
             } else {
                 throw new Error('Not found')

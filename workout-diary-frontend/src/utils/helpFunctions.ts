@@ -1,4 +1,5 @@
 import {Meal} from "@component/types/mealTypes";
+import {CARB_ENERGY, FAT_ENERGY, PROTEIN_ENERGY} from "@component/utils/constants";
 
 export function getTime() {
     const today = new Date();
@@ -29,6 +30,10 @@ export function getNutrientSum(meal: Meal) {
         carbs,
         energy,
     }
+}
+
+export function computeEnergyValue(p: number, c: number, f: number) {
+    return Math.round(p * PROTEIN_ENERGY + c * CARB_ENERGY + f * FAT_ENERGY)
 }
 
 

@@ -25,6 +25,13 @@ class Api {
         }).then(res => res.json())
     }
 
+    async delete(url: string) {
+        return await fetch(this.baseUrl + url, {
+            method: "DELETE",
+            headers: this.headers,
+        }).then(res => res.json())
+    }
+
     async patch(url: string, body: object) {
         return await fetch(this.baseUrl + url, {
             method: "PATCH",

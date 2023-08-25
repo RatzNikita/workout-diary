@@ -42,8 +42,7 @@ export default function ExercisesTable() {
             options: {
                 display: false,
             }
-        }
-        ,
+        },
         {
             name: "name",
             label: "Name",

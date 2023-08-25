@@ -6,6 +6,7 @@ import {TodayMeal} from "@component/components/Meal/TodayMeal/TodayMeal";
 import {CreateMealPopup} from "@component/components/Meal/CreateMealPopup/CreateMealPopup";
 import {PieChartData, PieChartWithPercents} from "@component/components/PieChartWithPercents/PieChartWithPercents";
 import Button from "@component/components/Button/Button";
+import {CARB_ENERGY, FAT_ENERGY, PROTEIN_ENERGY} from "@component/utils/constants";
 
 type Inputs = {
     energyValue: number
@@ -35,13 +36,13 @@ export default function  MealPlan() {
     })
 
     React.useEffect(() => {
-        setValue('energyValue', Math.trunc(watch('fats') * 9.3 + watch('proteins') * 4.1 + watch('carbs') * 4.1))
+        setValue('energyValue', Math.trunc(watch('fats') * FAT_ENERGY + watch('proteins') * PROTEIN_ENERGY + watch('carbs') * CARB_ENERGY))
     })
 
     const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
     const getEnergyValue = () => {
-        return `Energy, kcal: ${Math.trunc(watch('fats') * 9.3 + watch('proteins') * 4.1 + watch('carbs') * 4.1)} `;
+        return `Energy, kcal: ${Math.trunc(watch('fats') * FAT_ENERGY + watch('proteins') * PROTEIN_ENERGY + watch('carbs') * CARB_ENERGY)} `;
     }
 
     const pieChartData: PieChartData[] = [

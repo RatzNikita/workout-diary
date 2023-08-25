@@ -22,8 +22,10 @@ export const Header = ({className, ...props}: Props) => {
     const token = useAppSelector(state => state.main.token)
 
     React.useEffect(() => {
-        if (isLoggedIn && !username) {
+        if (isLoggedIn) {
             $api.setToken(token)
+        }
+        if (!username) {
             dispatch(getUserInfo())
         }
     }, [isLoggedIn])

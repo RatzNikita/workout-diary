@@ -9,8 +9,7 @@ import express from 'express'
 import mongoose from "mongoose";
 import cors from 'cors'
 import {login, register} from "./controllers/user";
-
-const auth = require('./middlewares/auth');
+import auth from './middlewares/auth'
 
 const app = express()
 

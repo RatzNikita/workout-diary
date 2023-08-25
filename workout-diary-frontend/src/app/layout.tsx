@@ -9,6 +9,7 @@ import {Header} from "@component/components/Header/Header";
 import {Footer} from "@component/components/Footer/Footer";
 import {PersistGate} from "redux-persist/integration/react";
 import {useAppSelector} from "@component/hooks/hooks";
+import $api from "@component/service/api/api";
 
 // const inter = Inter({subsets: ['latin']})
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             },
         },
     });
+
 
 
 

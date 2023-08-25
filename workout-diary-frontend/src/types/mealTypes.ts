@@ -1,4 +1,5 @@
 export interface Food {
+    _id?: string,
     name: string,
     group: FoodGroup,
     fats: number,
@@ -6,6 +7,7 @@ export interface Food {
     proteins: number,
     energy: number,
 }
+
 
 export interface FoodServing {
     food: Food,
